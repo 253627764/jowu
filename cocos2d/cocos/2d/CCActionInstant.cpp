@@ -324,7 +324,7 @@ CallFunc * CallFunc::create(const std::function<void()> &func)
 {
     CallFunc *ret = new CallFunc();
 
-    if (ret && ret->initWit          hFunction(func) ) {
+    if (ret && ret->initWithFunction(func) ) {
         ret->autorelease();
         return ret;
     }
