@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="48" height="80" tilewidth="10" tileheight="10">
+ <tileset firstgid="1" name="图片1" tilewidth="10" tileheight="10">
+  <image source="C:/Users/Administrator/Desktop/图片1.jpg" width="483" height="802"/>
+ </tileset>
+ <tileset firstgid="3841" name="monster" tilewidth="10" tileheight="10">
+  <image source="Resources/monster.png" width="128" height="128"/>
+ </tileset>
+ <layer name="块层 1" width="48" height="80">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <objectgroup name="monster" width="48" height="80">
+  <object name="monster" x="260" y="150" width="30" height="30">
+   <properties>
+    <property name="id" value="1"/>
+    <property name="showTime" value="0"/>
+   </properties>
+  </object>
+  <object name="monster" x="90" y="230" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="180" y="230" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="260" y="230" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="340" y="230" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="420" y="230" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="170" y="350" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="255" y="295" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="140" y="430" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="100" y="510" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="250" y="380" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="250" y="460" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="250" y="540" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="320" y="350" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="340" y="450" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+  <object name="monster" x="360" y="520" width="30" height="30">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="showTime" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

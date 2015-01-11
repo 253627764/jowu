@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="别救我（教程）">
+      <UniqueIdentifier>{2f2f653f-c7c7-4268-a62a-b0c2df120459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="别救我（教程）\场景">
+      <UniqueIdentifier>{1f08abb8-9c08-47ca-8034-feaf110d5f96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="别救我（教程）\场景\背景层">
+      <UniqueIdentifier>{35c668c9-132e-487e-a379-549df4e8cbaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="别救我（教程）\角色">
+      <UniqueIdentifier>{593caba6-d11f-4aea-9686-bb75353fed85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="别救我（教程）\角色\主角">
+      <UniqueIdentifier>{1e79978e-d4e3-4bde-8292-5f981ed4aa78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="别救我（教程）\角色\怪物">
+      <UniqueIdentifier>{7ea12624-2a3e-42e1-b2cb-37db649f994a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="别救我（教程）\场景\怪物层">
+      <UniqueIdentifier>{524728db-008d-49dd-be3a-09f6731dc054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="别救我（教程）\json">
+      <UniqueIdentifier>{35cd06fd-91e7-4974-98b6-6306273dd131}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scene\BackgroundLayer.cpp">
+      <Filter>别救我（教程）\场景\背景层</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scene\TollgateScene.cpp">
+      <Filter>别救我（教程）\场景</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\entity\Player.cpp">
+      <Filter>别救我（教程）\角色\主角</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\entity\Monster.cpp">
+      <Filter>别救我（教程）\角色\怪物</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scene\MonsterLayer.cpp">
+      <Filter>别救我（教程）\场景\怪物层</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\json\json_reader.cpp">
+      <Filter>别救我（教程）\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\json\json_value.cpp">
+      <Filter>别救我（教程）\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\json\json_writer.cpp">
+      <Filter>别救我（教程）\json</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\BackgroundLayer.h">
+      <Filter>别救我（教程）\场景\背景层</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\TollgateScene.h">
+      <Filter>别救我（教程）\场景</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\entity\Player.h">
+      <Filter>别救我（教程）\角色\主角</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\ObjectTag.h">
+      <Filter>别救我（教程）</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\entity\Monster.h">
+      <Filter>别救我（教程）\角色\怪物</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\MonsterLayer.h">
+      <Filter>别救我（教程）\场景\怪物层</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\autolink.h">
+      <Filter>别救我（教程）\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\config.h">
+      <Filter>别救我（教程）\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\features.h">
+      <Filter>别救我（教程）\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\forwards.h">
+      <Filter>别救我（教程）\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\json.h">
+      <Filter>别救我（教程）\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\json_batchallocator.h">
+      <Filter>别救我（教程）\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\reader.h">
+      <Filter>别救我（教程）\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\value.h">
+      <Filter>别救我（教程）\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\writer.h">
+      <Filter>别救我（教程）\json</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Classes\json\json_internalarray.inl">
+      <Filter>别救我（教程）\json</Filter>
+    </None>
+    <None Include="..\Classes\json\json_internalmap.inl">
+      <Filter>别救我（教程）\json</Filter>
+    </None>
+    <None Include="..\Classes\json\json_valueiterator.inl">
+      <Filter>别救我（教程）\json</Filter>
+    </None>
+  </ItemGroup>
+</Project>

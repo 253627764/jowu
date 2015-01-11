@@ -1,0 +1,60 @@
+D:\My Documents\Visual Studio 2008\Projects\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.exe
+D:\My Documents\Visual Studio 2008\Projects\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.pdb
+D:\My Documents\Visual Studio 2008\Projects\AIIsTheFuture\AIIsTheFuture\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.AIIsTheFuture.resources
+D:\My Documents\Visual Studio 2008\Projects\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.Properties.Resources.resources
+D:\My Documents\Visual Studio 2008\Projects\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.csproj.GenerateResource.Cache
+D:\My Documents\Visual Studio 2008\Projects\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.exe
+D:\My Documents\Visual Studio 2008\Projects\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.pdb
+H:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.exe
+H:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.pdb
+H:\AIIsTheFuture\AIIsTheFuture\obj\Debug\ResolveAssemblyReference.cache
+H:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.AIIsTheFuture.resources
+H:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.Properties.Resources.resources
+H:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.csproj.GenerateResource.Cache
+H:\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.exe
+H:\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.pdb
+I:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.exe
+I:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.pdb
+I:\AIIsTheFuture\AIIsTheFuture\obj\Debug\ResolveAssemblyReference.cache
+I:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.AIIsTheFuture.resources
+I:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.Properties.Resources.resources
+I:\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.csproj.GenerateResource.Cache
+I:\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.exe
+I:\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.pdb
+d:\我的文档\桌面\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.exe
+d:\我的文档\桌面\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.pdb
+d:\我的文档\桌面\《Qt Creator快速入门》代码\src\AIIsTheFuture\AIIsTheFuture\obj\Debug\ResolveAssemblyReference.cache
+d:\我的文档\桌面\《Qt Creator快速入门》代码\src\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.AIIsTheFuture.resources
+d:\我的文档\桌面\《Qt Creator快速入门》代码\src\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.Properties.Resources.resources
+d:\我的文档\桌面\《Qt Creator快速入门》代码\src\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.csproj.GenerateResource.Cache
+d:\我的文档\桌面\AIIsTheFuture\AIIsTheFuture\obj\Debug\ResolveAssemblyReference.cache
+d:\我的文档\桌面\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.AIIsTheFuture.resources
+d:\我的文档\桌面\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.Properties.Resources.resources
+d:\我的文档\桌面\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.csproj.GenerateResource.Cache
+d:\我的文档\桌面\myBox\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.exe
+d:\我的文档\桌面\myBox\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.pdb
+d:\我的文档\桌面\myBox\AIIsTheFuture\AIIsTheFuture\obj\Debug\ResolveAssemblyReference.cache
+d:\我的文档\桌面\myBox\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.AIIsTheFuture.resources
+d:\我的文档\桌面\myBox\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.Properties.Resources.resources
+d:\我的文档\桌面\myBox\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.csproj.GenerateResource.Cache
+d:\我的文档\桌面\myBox\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.exe
+d:\我的文档\桌面\myBox\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.pdb
+C:\Documents and Settings\xp\桌面\tester\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.exe
+C:\Documents and Settings\xp\桌面\tester\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.pdb
+C:\Documents and Settings\xp\桌面\tester\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.exe
+C:\Documents and Settings\xp\桌面\tester\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.pdb
+C:\Documents and Settings\xp\桌面\tester\AIIsTheFuture\AIIsTheFuture\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\xp\桌面\tester\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.AIIsTheFuture.resources
+C:\Documents and Settings\xp\桌面\tester\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.Properties.Resources.resources
+C:\Documents and Settings\xp\桌面\tester\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.csproj.GenerateResource.Cache
+d:\我的文档\桌面\future\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.exe
+d:\我的文档\桌面\future\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.pdb
+d:\我的文档\桌面\future\AIIsTheFuture\AIIsTheFuture\obj\Debug\ResolveAssemblyReference.cache
+d:\我的文档\桌面\future\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.AIIsTheFuture.resources
+d:\我的文档\桌面\future\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.Properties.Resources.resources
+d:\我的文档\桌面\future\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.csproj.GenerateResource.Cache
+d:\我的文档\桌面\future\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.exe
+d:\我的文档\桌面\future\AIIsTheFuture\AIIsTheFuture\bin\Debug\AIIsTheFuture.pdb
+E:\workspace\games\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.exe
+E:\workspace\games\AIIsTheFuture\AIIsTheFuture\obj\Debug\AIIsTheFuture.pdb
