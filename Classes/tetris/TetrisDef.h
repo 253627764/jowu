@@ -1,5 +1,7 @@
 #include <stdarg.h>
 
+#define NULLPOINT 
+
 #define JJ_DISCPY(class) \
 	class(const class&); \
 	class& operator=(const class&);
@@ -27,12 +29,18 @@ enum TetrisColor_Type
 enum TetrisBlock_Type
 {
 	TetrisBlock_Stick = 0,
-	TetrisBlock_Zshape,
-	TetrisBlock_Zrshape,
-	TetrisBlock_Lshape,
-	TetrisBlock_Lrshape,
+	TetrisBlock_Z,
+	TetrisBlock_S,
+	TetrisBlock_L,
+	TetrisBlock_MirrorL,
 	TetrisBlock_Hill,
 	TetriBlock_Square,
 	TetriBlock_Invalid,
 	TetriBlockNum = TetriBlock_Invalid
+};
+
+struct Point
+{
+	int x;
+	int y;
 };
