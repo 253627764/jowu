@@ -23,7 +23,7 @@ enum TetrisColor_Type
 	TetrisColor_Blue   = 0x000000FF,
 	TetrisColor_Purple = 0x00800080,//128,0,128
 	TetrisColor_Pink   = 0x00FFC0CB,//255,192,203
-	TetrisColor_Num = 9
+	TetrisColor_Num = TetrisColor_Invalid
 };
 
 enum TetrisBlock_Type
@@ -36,7 +36,7 @@ enum TetrisBlock_Type
 	TetrisBlock_Hill,
 	TetriBlock_Square,
 	TetriBlock_Invalid,
-	TetriBlockNum = TetriBlock_Invalid
+	TetriBlock_Num = TetriBlock_Invalid
 };
 
 struct Point

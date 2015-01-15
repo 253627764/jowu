@@ -7,38 +7,27 @@ Block::Block(TetrisBlock_Type shape, TetrisColor_Type color,
 	m_maxChangeTime(maxChangeTime),
 	m_changedTime(changedTime) {}
 	
-void Block::clone(const Block& rhs)
-{
-	if (&rhs == this) {
-		return;
-	}
-
-	rhs.m_shape = m_shape;
-	rhs.m_color = m_color;
-	rhs.m_maxChangeTime = m_maxChangeTime;
-	rhs.m_changedTime = m_changedTime;
-
-	rhs.Units().clear();
-	std::copy(m_units.begin(), m_units.end(), std::back_inserter(rhs.Units()));
-
-	m_left = rhs.left;
-	m_right = rhs.right;
-}
-
-virtual void Block::rotate(bool clockwise)
+void Block::rotate(bool clockwise)
 {
 	if (0 == m_units.size()) {
 		return;
 	}
 	//TO DO
+    
+    
+    std::vector<Point>::const_iterator iter = m_units.begin();
+    for (; iter != m_units.end(); ++iter) {
+        
+    }
 
 }
-virtual Block::std::vector<int> bitData();
+
+std::vector<int> Block::bitData();
 {
 
 }
 
-virtual ZBlock::ZBlock(TetrisBlock_Type )
+ZBlock::ZBlock(TetrisBlock_Type )
 {
 	return TetrisBlock_Z;
 }
@@ -47,11 +36,68 @@ virtual void rotate(bool clockwise)
 {
 
 }
+
 virtual std::vector<int> bitData();
 virtual unsigned int maxChangeTime();
 virtual unsigned int changedTime();
 virtual Point position();
 virtual TetrisColor_Type color();
 };
+
+
+
+
+
+
+static const int coordsTable[8][4][2] = {
+    { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
+    { { 0, -1 },  { 0, 0 },   { -1, 0 },  { -1, 1 } },
+    { { 0, -1 },  { 0, 0 },   { 1, 0 },   { 1, 1 } },
+    { { 0, -1 },  { 0, 0 },   { 0, 1 },   { 0, 2 } },
+    { { -1, 0 },  { 0, 0 },   { 1, 0 },   { 0, 1 } },
+    { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },
+    { { -1, -1 }, { 0, -1 },  { 0, 0 },   { 0, 1 } },
+    { { 1, -1 },  { 0, -1 },  { 0, 0 },   { 0, 1 } }
+};
+
+
+
+
+class StickBlock : public Block
+{
+    StickBlock();
+};
+
+class ZBlock : public Block
+{
+    ZBlock();
+};
+
+class SBlock : public Block
+{
+    SBlock();
+};
+
+class LBlock : public Block
+{
+    LBlock();
+};
+
+class MirrorLBlock : public Block
+{
+    MirrorLBlock();
+};
+
+class HillBlock : public Block
+{
+    HillBlock();
+};
+
+class SquareBlock : public Block
+{
+    SquareBlock();
+};
+
+
 
 }
