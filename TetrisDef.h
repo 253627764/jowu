@@ -23,7 +23,8 @@ enum TetrisColor_Type
 	TetrisColor_Blue   = 0x000000FF,
 	TetrisColor_Purple = 0x00800080,//128,0,128
 	TetrisColor_Pink   = 0x00FFC0CB,//255,192,203
-	TetrisColor_Num = TetrisColor_Invalid
+    TetrisColor_Num,
+	TetrisColor_Invalid = TetrisColor_Num
 };
 
 enum TetrisBlock_Type
@@ -39,8 +40,11 @@ enum TetrisBlock_Type
 	TetriBlock_Num = TetriBlock_Invalid
 };
 
-struct Point
+class JJPoint
 {
+public:
+    JJPoint(int _x, int _y)
+    : x(_x), y(_y) {}
 	int x;
 	int y;
 };

@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "TetrisBlock.h"
 
 USING_NS_CC;
 
@@ -20,6 +21,7 @@ Scene* HelloWorld::createScene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
+    BlockGroup b;
     //////////////////////////////
     // 1. super init first
     if ( !Layer::init() )
