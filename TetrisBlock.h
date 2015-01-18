@@ -65,10 +65,10 @@ public:
     BlockGroup();
     //static BlockGroup* instance();
 private:
-    void addBlockToGroup(TetrisBlock_Type shape, TetrisColor_Type color, unsigned int maxChangeTime, const std::vector<JJPoint>& lst);
+    bool addBlockToGroup(TetrisBlock_Type shape, TetrisColor_Type color, unsigned int maxChangeTime, const std::vector<JJPoint>& lst);
     void initialize();
 
-    std::vector<JJPoint> rotate(const std::vector<JJPoint>& lst);
+    bool rotate(std::vector<JJPoint>& lstOut);
 private:
     //static BlockGroup* s_instance;
 private:

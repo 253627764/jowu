@@ -62,6 +62,7 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		9A6873421A6BA00E00BC6218 /* GamePanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6873401A6BA00E00BC6218 /* GamePanel.cpp */; };
 		9AD66E221A6AC2C600D52E9D /* TetrisBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD66E1F1A6AC2C600D52E9D /* TetrisBlock.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -261,6 +262,8 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		9A6873401A6BA00E00BC6218 /* GamePanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GamePanel.cpp; path = ../GamePanel.cpp; sourceTree = "<group>"; };
+		9A6873411A6BA00E00BC6218 /* GamePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GamePanel.h; path = ../GamePanel.h; sourceTree = "<group>"; };
 		9AD66E1F1A6AC2C600D52E9D /* TetrisBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TetrisBlock.cpp; path = ../TetrisBlock.cpp; sourceTree = "<group>"; };
 		9AD66E201A6AC2C600D52E9D /* TetrisBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TetrisBlock.h; path = ../TetrisBlock.h; sourceTree = "<group>"; };
 		9AD66E211A6AC2C600D52E9D /* TetrisDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TetrisDef.h; path = ../TetrisDef.h; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9A6873401A6BA00E00BC6218 /* GamePanel.cpp */,
+				9A6873411A6BA00E00BC6218 /* GamePanel.h */,
 				9AD66E1F1A6AC2C600D52E9D /* TetrisBlock.cpp */,
 				9AD66E201A6AC2C600D52E9D /* TetrisBlock.h */,
 				9AD66E211A6AC2C600D52E9D /* TetrisDef.h */,
@@ -674,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6873421A6BA00E00BC6218 /* GamePanel.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				9AD66E221A6AC2C600D52E9D /* TetrisBlock.cpp in Sources */,
