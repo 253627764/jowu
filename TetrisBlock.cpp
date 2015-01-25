@@ -100,6 +100,5 @@ void BlockGroup::initialize()
 
         addBlockToGroup((TetrisBlock_Type)i, TetrisColor_Black, maxChangeTimes[i], lst);
     }
-    
-    int a = 0;
 }
+
