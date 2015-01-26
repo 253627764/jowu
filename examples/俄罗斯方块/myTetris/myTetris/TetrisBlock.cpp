@@ -21,11 +21,6 @@ bool TetrisBlock::init(void){
     
     return true;
 }
-
-void TetrisBlock::draw(void){
-    CCSprite::draw();
-}
-
 void TetrisBlock::b_initWithType(int _type){
     CCSize cs = TetrisDateHandle::getSharedTetrisDateHandle()->h_get_T_ContentSize();
     cs = CCSizeMake(cs.width-1, cs.height-1);
