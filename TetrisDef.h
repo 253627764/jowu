@@ -6,44 +6,57 @@
 	class(const class&); \
 	class& operator=(const class&);
 
+#ifdef INT
+#define unsigned int INT
+#endif
+
 //from CC_PROPERTY
 #define JJ_PROPERTY(varType, varName, funName)\
 private: varType varName;\
 public: varType get##funName(void);\
 public: void set##funName(varType var);
 
-enum TetrisColor_Type
+enum Color_Type
 {
-	TetrisColor_Black  = 0x00000000,
-	TetrisColor_Red    = 0x00FF0000,
-	TetrisColor_Orange = 0x00FFA500,//255,165,0
-	TetrisColor_Yellow = 0x00FFFF00,
-	TetrisColor_Green  = 0x00008000,//0,128,0
-	TetrisColor_Cyan   = 0x0000FFFF,
-	TetrisColor_Blue   = 0x000000FF,
-	TetrisColor_Purple = 0x00800080,//128,0,128
-	TetrisColor_Pink   = 0x00FFC0CB,//255,192,203
-    TetrisColor_Num,
-	TetrisColor_Invalid = TetrisColor_Num
+	Color_Black  = 0x00000000,
+	Color_Red    = 0x00FF0000,
+	Color_Orange = 0x00FFA500,//255,165,0
+	Color_Yellow = 0x00FFFF00,
+	Color_Green  = 0x00008000,//0,128,0
+	Color_Cyan   = 0x0000FFFF,
+	Color_Blue   = 0x000000FF,
+	Color_Purple = 0x00800080,//128,0,128
+	Color_Pink   = 0x00FFC0CB,//255,192,203
+    Color_Num,
+	Color_Invalid = Color_Num
 };
 
-enum TetrisBlock_Type
+enum Block_Type
 {
-	TetrisBlock_Stick = 0,
-	TetrisBlock_Z,
-	TetrisBlock_S,
-	TetrisBlock_L,
-	TetrisBlock_MirrorL,
-	TetrisBlock_Hill,
-	TetriBlock_Square,
-	TetriBlock_Invalid,
-	TetriBlock_Num = TetriBlock_Invalid
+	Block_Stick = 0,
+	Block_Z,
+	Block_S,
+	Block_L,
+	Block_MirrorL,
+	Block_Hill,
+	Block_Square,
+	Block_Invalid,
+	Block_Num = Block_Invalid
+};
+
+enum State_Type
+{
+	State_Hollow = 0,
+	State_Fill,
+	State_Effect,
+	State_Invalid,
+	State_Num = State_Invalid
 };
 
 class JJPoint
 {
 public:
-    JJPoint(int _x, int _y)
+    JJPoint(int _x = -1, int _y = -1)
     : x(_x), y(_y) {}
 	int x;
 	int y;

@@ -10,9 +10,6 @@
     <Filter Include="resource">
       <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\tetris">
-      <UniqueIdentifier>{4f1bb174-bf8a-4796-b422-5dcfa14d04ca}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,14 +21,11 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\tetris\Block.cpp">
-      <Filter>Classes\tetris</Filter>
+    <ClCompile Include="..\GamePanel.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\tetris\GameController.cpp">
-      <Filter>Classes\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\tetris\GamePanel.cpp">
-      <Filter>Classes\tetris</Filter>
+    <ClCompile Include="..\TetrisBlock.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,17 +38,14 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\tetris\Block.h">
-      <Filter>Classes\tetris</Filter>
+    <ClInclude Include="..\GamePanel.h">
+      <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\tetris\GameController.h">
-      <Filter>Classes\tetris</Filter>
+    <ClInclude Include="..\TetrisBlock.h">
+      <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\tetris\GamePanel.h">
-      <Filter>Classes\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\tetris\TetrisDef.h">
-      <Filter>Classes\tetris</Filter>
+    <ClInclude Include="..\TetrisDef.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

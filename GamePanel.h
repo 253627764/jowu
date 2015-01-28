@@ -3,64 +3,39 @@
 #include "TetrisDef.h"
 #include "TetrisBlock.h"
 
+#define unsigned int INT
+#define PanelInst GetPanelInstance();
+
 static const int PanelWidth = 12;
 static const int PanelHeight = 24;
-
-class Piece
-{
-    JJ_DISCPY(Piece)
-public:
-    Piece(unsigned int x, unsigned int y, int state, TetrisColor_Type color)
-        : m_x(x), m_y(y), m_state(state), m_color(color) {}
-    virtual ~Piece() {}
-    unsigned int X() const { return m_x; }
-    unsigned int Y() const { return m_y; }
-    int State() const { return m_state; }
-    TetrisColor_Type color() const { return m_color; }
-private:
-    int m_state;//0 null 1 block
-    unsigned int m_x;
-    unsigned int m_y;
-    TetrisColor_Type m_color;
-};
-
-class PanelData
-{
-    PanelData(unsigned int width = PanelWidth,
-              unsigned int height PanelHeight);
-    virtual ~PanelData() {}
-    static PanelData* instance();
-    
-    inline
-    
-private:
-    static PanelData* s_instance;
-private:
-    std::vector<unsigned int> m_data;
-    PanelData m_pieceArray[PanelWidth][PanelHeight];
-};
-
+static const int NextNum = 3;
+class PanelData;
 class GamePanel
 {
     JJ_DISCPY(GamePanel)
-    
+    unsigned int m_speed;
+    JJPoint m_pos;
     TetrisBlock* m_block;
+    TetrisBlock m_nextBlocks[NextNum];
+    PanelData* m_panel;
 public:
     GamePanel();
-    
-    
-    bool addBlockToPanel(TetrisBlock *block, const JJ_Point &pos);
+
+    bool addBlockToPanel(TetrisBlock *block, const JJPoint &pos);
     bool down();
     bool moveLeft();
     bool moveRight();
-    bool rotateLeft();
-    bool rotateRight();
-    //bool hasten();
-    bool drop();
-    //bool tryMove();
-    bool tryRotate();
-    unsigned int eliminateLines();
-    
+    bool rotate(bool clockWise);
+    void drop();
+    INT eliminateLines();
+
+    //effect interface to do
+    void eggShell() {}
+private:
+    bool checkPosition(TetrisBlock* block, const JJPoint& pos);
+
 };
+
+
 
 #endif

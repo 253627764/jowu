@@ -5,21 +5,6 @@
 #include <cocos2d.h>
 #include <vector>
 
-
-//class Unit
-//{
-//	JJ_PROPERTY(unsigned int, m_x, X);
-//	JJ_PROPERTY(unsigned int, m_y, Y);
-//	JJ_PROPERTY(unsigned int, m_state, State);
-//	JJ_PROPERTY(unsigned int, m_color, Color);
-//
-//public:
-//	Unit();
-//	Unit(const Unit&);
-//	Unit& operator=(const Unit&);
-//	~Unit();
-//};
-
 class TetrisBlock
 {
     friend class BlockGroup;
