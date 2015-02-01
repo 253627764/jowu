@@ -3,11 +3,10 @@
 #include "TetrisDef.h"
 #include "TetrisBlock.h"
 
-#define unsigned int INT
 #define PanelInst GetPanelInstance();
 
-static const int PanelWidth = 12;
-static const int PanelHeight = 24;
+#define PanelWidth 12
+#define PanelHeight 24
 static const int NextNum = 3;
 class PanelData;
 class GamePanel
@@ -27,7 +26,7 @@ public:
     bool moveRight();
     bool rotate(bool clockWise);
     void drop();
-    INT eliminateLines();
+    unsigned int eliminateLines();
 
     //effect interface to do
     void eggShell() {}

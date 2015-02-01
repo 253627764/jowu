@@ -7,19 +7,17 @@
 
 class TetrisBlock
 {
-    friend class BlockGroup;
 	JJ_DISCPY(TetrisBlock)
+    friend class BlockGroup;
 public:
-    TetrisBlock(TetrisBlock_Type shape, TetrisColor_Type color,
-                unsigned int maxChangeTime, unsigned int changedTime, const std::vector<JJPoint>& lst);
+    TetrisBlock(Block_Type shape, Color_Type color, unsigned int maxChangeTime, unsigned int changedTime, const std::vector<JJPoint>& lst);
 	
 	int* bitData();
 
-	TetrisBlock_Type type() const { return m_shape; }
-	TetrisColor_Type color() const { return m_color; }
+	Block_Type type() const { return m_shape; }
+	Color_Type color() const { return m_color; }
 	unsigned int maxChangeTime() const { return m_maxChangeTime; }
 	unsigned int changedTime() const { return m_changedTime; }
-
 
     TetrisBlock* left() const { return m_left; }
     TetrisBlock* right() const { return m_right; }
@@ -32,12 +30,11 @@ protected:
 
 private:
     void setLeft(TetrisBlock* b) { m_left = b; }
-    void setRight(TetrisBlock*　b) { m_right = b; }
-    
-	TetrisBlock_Type m_shape;
-	TetrisColor_Type m_color;
+    void setRight(TetrisBlock* b) { m_right = b; }
+	Block_Type m_shape;
+	Color_Type m_color;
 	unsigned int m_maxChangeTime;
-	unsigned int m_changedTime;
+    unsigned int m_changedTime;
 	TetrisBlock* m_left;
 	TetrisBlock* m_right;
     int m_bitData[4];
@@ -50,7 +47,7 @@ public:
     BlockGroup();
     //static BlockGroup* instance();
 private:
-    bool addBlockToGroup(TetrisBlock_Type shape, TetrisColor_Type color, unsigned int maxChangeTime, const std::vector<JJPoint>& lst);
+    bool addBlockToGroup(Block_Type shape, Color_Type color, unsigned int maxChangeTime, const std::vector<JJPoint>& lst);
     void initialize();
 
     bool rotate(std::vector<JJPoint>& lstOut);

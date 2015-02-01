@@ -1,20 +1,16 @@
+#ifndef TETRIS_DEF_H
+#define TETRIS_DEF_H
 #include <stdarg.h>
-
-#define NULLPOINT 
 
 #define JJ_DISCPY(class) \
 	class(const class&); \
 	class& operator=(const class&);
 
-#ifdef INT
-#define unsigned int INT
-#endif
-
 //from CC_PROPERTY
-#define JJ_PROPERTY(varType, varName, funName)\
-private: varType varName;\
-public: varType get##funName(void);\
-public: void set##funName(varType var);
+//#define JJ_PROPERTY(varType, varName, funName)\
+//private: varType varName;\
+//public: varType get##funName(void);\
+//public: void set##funName(varType var);
 
 enum Color_Type
 {
@@ -61,3 +57,5 @@ public:
 	int x;
 	int y;
 };
+
+#endif

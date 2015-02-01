@@ -3,68 +3,82 @@
 class PanelData;
 PanelData* GetPanelInstance()
 {
-    return PanelData::instance();
+    return NULL;//PanelData::instance();
 }
 
 class Piece
 {
     JJ_DISCPY(Piece)
 public:
-    Piece(INT x = -1, INT y = -1, State_Type state = State_Invalid,
-		Color_Type color = Color_Invalid)
+    Piece(unsigned int x, unsigned int y, State_Type state,
+		Color_Type color)
         : m_x(x), m_y(y), m_state(state), m_color(color) {}
+    Piece()
+        : m_x(-1), m_y(-1),
+        m_state(State_Invalid), m_color(Color_Invalid) {}
     virtual ~Piece() {}
+    
+    inline void clone(const Piece& ref) {
+        m_x = ref.X();
+        m_y = ref.Y();
+        m_state = ref.State();
+        m_color = ref.Color();
+    }
+
 	inline void reset(Color_Type color) { m_x = -1; m_y = -1;
 		m_state = State_Invalid; m_color = color; }
 
-	INT X() const { return m_x; }
-    INT Y() const { return m_y; }
+	unsigned int X() const { return m_x; }
+    unsigned int Y() const { return m_y; }
     State_Type State() const { return m_state; }
-    Color_Type color() const { return m_color; }
-	
+    Color_Type Color() const { return m_color; }
 
-	void setX(INT x) { m_x = x; }
-	void setY(INT y) { m_y = y; }
+	void setX(unsigned int x) { m_x = x; }
+	void setY(unsigned int y) { m_y = y; }
 	void setState(const State_Type& state) { m_state = state; }
 	void setColor(const Color_Type& color) { m_color = color; }
 
 private:
-    int m_state;//0 null 1 block
-    INT m_x;
-    INT m_y;
+    State_Type m_state;//0 null 1 block
+    unsigned int m_x;
+    unsigned int m_y;
     Color_Type m_color;
 };
 
 class PanelData
 {
-	typedef PanelWidth w;
-	typedef PanelHeight h;
 public:
-    PanelData(INT width = PanelWidth, INT height PanelHeight);
+    PanelData(unsigned int width = PanelWidth, unsigned int height = PanelHeight);
     virtual ~PanelData() {}
     static PanelData* instance();
-	inline Piece getPiece(INT x, INT y) const;
+	//inline Piece getPiece(unsigned int x, unsigned int y) const;
 
     bool update(TetrisBlock* block, const JJPoint &pos);
 	bool checkPosition(TetrisBlock* block, const JJPoint& pos);
-	std::vecteor<int> eliminateLines();
-	void collapse() const;
-	void moveByLines(INT form, INT to);
-	INT currentHeight() const;
+	std::vector<int> eliminateLines();
+	unsigned int collapse();
+	void moveByLines(unsigned int form, unsigned int to);
+	unsigned int currentHeight() const;
+    bool elevate(unsigned int lines);
+    void reset();
 
 private:
     static PanelData* s_instance;
 private:
-	INT m_width;
-	INT m_height;
-    std::vector<INT> m_data;
-    Piece m_pieces[PanelWidth][PanelHeight];
+	unsigned int m_width;
+	unsigned int m_height;
+    std::vector<unsigned int> m_data;
+    Piece **m_pieces;
 };
 
-PanelData::PanelData(INT width = PanelWidth, INT height PanelHeight)
+PanelData::PanelData(unsigned int width, unsigned int height)
 	: m_width(PanelWidth), m_height(PanelHeight)
 {
-	m_pieces = new Piece[m_width][m_height];
+	m_pieces = new Piece*[m_height];
+    for (int i = 0; i < m_height; ++i) {
+        m_pieces[i] = new Piece[m_width];
+    }
+    
 	if (!m_data.empty()) m_data.clear();
 
 	for (int i = 0; i < m_height; i++) {
@@ -75,7 +89,7 @@ PanelData::PanelData(INT width = PanelWidth, INT height PanelHeight)
 PanelData* PanelData::instance()
 {
 	if (!s_instance) {
-		s_instance = new PanelData(w, h);
+		s_instance = new PanelData();
 	}
 
 	return s_instance;
@@ -88,11 +102,11 @@ bool PanelData::checkPosition(TetrisBlock* block, const JJPoint& pos)
 	for (i = 0; i < block->Points().size(); ++i) {
 		int _x = block->Points()[i].x + pos.x;
 		int _y = block->Points()[i].y + pos.y;
-		if ((0 > x || w < x) || (0 > y || h < y) {
+		if (0 > _x || PanelWidth < _x || 0 > _y || PanelHeight < _y) {
 			return false;
 		}
 		
-		if (State_Hollow != m_pieces[x][y].State()) {
+		if (State_Hollow != m_pieces[_x][_y].State()) {
 			return false;
 		}
 	}
@@ -109,7 +123,7 @@ bool PanelData::update(TetrisBlock* block, const JJPoint &pos)
 	for (i = 0; i < block->Points().size(); ++i) {
 		int x = block->Points()[i].x + pos.x;
 		int y = block->Points()[i].y + pos.y;
-		if ((0 > x || w < x) || (0 > y || h < y) {
+		if ((0 > x || PanelWidth < x) || (0 > y || PanelHeight < y)) {
 			return false;
 		}
 		
@@ -122,56 +136,58 @@ bool PanelData::update(TetrisBlock* block, const JJPoint &pos)
 	}
 
 	return true;
-		
 }
-
-inline Piece PanelData::getPiece(INT x, INT y) const;
+/*
+Piece PanelData::getPiece(unsigned int x, unsigned int y) const
 {
-	if ((0 <= x && w > x || (0 <= y && h > y)) {
+	if ((0 <= x && PanelWidth > x) || (0 <= y && PanelHeight > y)) {
 		return m_pieces[x][y];
 	}
 
 	return Piece();
-}
+}*/
 
-void PanelData::moveByLines(INT form, INT to)
+void PanelData::moveByLines(unsigned int form, unsigned int to)
 {
-	if ((0 > form || h <= form) || (0 > to || h <= to)) {
+	if (PanelHeight <= form || PanelHeight <= to) {
 		return;
 	}
-	
-	for (int i = 0; i < w; ++i) {
-		m_pieces[i][form] = m_pieces[i][to];
+
+	for (int i = 0; i < PanelWidth; ++i) {
+        m_pieces[i][form].clone(m_pieces[i][to]);
 	}
 }
 
-std::vecteor<int> PanelData::eliminateLines()
+std::vector<int> PanelData::eliminateLines()
 {
 	std::vector<int> clearLayer;
-	int i, j;
-	for (i = h; i >= 0; --i) {
-		bool clear = true;
-		if (j = 0; j < w; ++j) {
-			if (m_pieces[i][j].state != State_Fill) {
-				clear = false;
-				break;
-			}
-		}
+    int i;
+    int j;
+	for (i = PanelHeight; i >= 0; --i) {
+        bool clear = true;
+        for (j = 0;j < PanelWidth; j++) {
+            if (State_Fill != m_pieces[i][j].State()) {
+                clear = false;
+                break;
+            }
+        }
 
 		if (clear) {
 			clearLayer.push_back(i);
 		}
-	}
+    }
+    
+    return clearLayer;
 }
 
-bool PanelData::elevate(INT lines)
+bool PanelData::elevate(unsigned int lines)
 {
-	if (h >= (currentHeight() + lines)) {
+	if (PanelHeight >= (currentHeight() + lines)) {
 		return false;
 	}
 	
 	//except that i+2 will be overrided, elevate from the top.
-	for(int i = h - lines; i >= 0 ; --i) {
+	for(int i = PanelHeight - lines; i >= 0 ; --i) {
 		moveByLines(i, i + lines);
 	}
 
@@ -179,21 +195,21 @@ bool PanelData::elevate(INT lines)
 }
 
 //box2d will added further
-INT PanelData::collapse()
+unsigned int PanelData::collapse()
 {
 	int i, j;
-	INT dropLine = 0;
-	for (i = h; i >= 0; --i) {
-		if (State_Effect == m_pieces[0][i].state()) {
+	unsigned int dropLine = 0;
+	for (i = PanelHeight; i >= 0; --i) {
+		if (State_Effect == m_pieces[0][i].State()) {
 			++dropLine;
 			continue;
 		}
 
-		moveByLines(i, i - dropLine);	
+		moveByLines(i, i - dropLine);
 	}
 
 	for (i = 0; i < dropLine; ++i) {
-		for (j = 0; j < w; ++j) {
+		for (j = 0; j < PanelWidth; ++j) {
 			m_pieces[i][j].reset(Color_Black);
 		}
 	}
@@ -204,8 +220,8 @@ INT PanelData::collapse()
 void PanelData::reset()
 {
 	int i, j;
-	for (i = 0; i < h; ++i) {
-		for (j = 0; j < w; ++j) {
+	for (i = 0; i < PanelHeight; ++i) {
+		for (j = 0; j < PanelWidth; ++j) {
 			m_pieces[i][j].reset(Color_Black);
 		}
 	}
@@ -261,13 +277,14 @@ bool GamePanel::rotate(bool clockWise)
 	TetrisBlock* block;
 	if (m_block && m_panel) {
 		block = clockWise ? m_block->right() : m_block->left();
-		for (int i = 0; i < w; ++i) {
-			if (m_panel->checkPosition(block, JJPoint((m_pos.x + i) % w, m_pos.y)) {
+        int offset;
+		for (offset = 0; offset < PanelWidth; ++offset) {
+			if (m_panel->checkPosition(block, JJPoint((m_pos.x + offset) % PanelWidth, m_pos.y))) {
 				break;
 			}
 		}
 
-		m_pos.x = (m_pos.x + i) % w;
+		m_pos.x = (m_pos.x + offset) % PanelWidth;
 		m_block = block;
 	}
 
@@ -276,8 +293,8 @@ bool GamePanel::rotate(bool clockWise)
 
 void GamePanel::drop()
 {
-	int i = 0;
-	for (i = 0; i < h - m_pos.y; ++i) {
+	int i;
+	for (i = 0; i < PanelHeight - m_pos.y; ++i) {
 		if (!m_panel->checkPosition(m_block,
 			JJPoint(m_pos.x, m_pos.y + i))) {
 			break;
@@ -286,17 +303,5 @@ void GamePanel::drop()
 
 	m_pos.y += i;
 	//add block to panel
-	addBlockToPanel();
-}
-
-std::vector<int> GamePanel::eliminateLines()
-{
-#if 1//NonBinary
-    int i;
-    for (i = 0; i < 
-
-   return true;
-#else
-    //TO DO :Binary option
-#endif
+	//addBlockToPanel();
 }

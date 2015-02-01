@@ -1,5 +1,5 @@
 #include "TetrisBlock.h"
-TetrisBlock::TetrisBlock(TetrisBlock_Type shape, TetrisColor_Type color,
+TetrisBlock::TetrisBlock(Block_Type shape, Color_Type color,
              unsigned int maxChangeTime, unsigned int changedTime, const std::vector<JJPoint>& lst)
 	: m_shape(shape),
 	m_color(color),
@@ -44,7 +44,7 @@ bool BlockGroup::rotate(std::vector<JJPoint>& lstOut)
     return true;
 }
 
-bool BlockGroup::addBlockToGroup(TetrisBlock_Type shape, TetrisColor_Type color,
+bool BlockGroup::addBlockToGroup(Block_Type shape, Color_Type color,
                             unsigned int maxChangeTime, const std::vector<JJPoint>& lst)
 {
     int i;
@@ -98,7 +98,6 @@ void BlockGroup::initialize()
             lst.push_back(JJPoint(coordsTable[i][j][0], coordsTable[i][j][1]));
         }
 
-        addBlockToGroup((TetrisBlock_Type)i, TetrisColor_Black, maxChangeTimes[i], lst);
+        addBlockToGroup((Block_Type)i, Color_Black, maxChangeTimes[i], lst);
     }
 }
-
