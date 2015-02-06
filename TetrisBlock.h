@@ -25,18 +25,18 @@ public:
 
 	virtual unsigned int wieght() const { return 0; }
 
-protected:
-	std::vector<JJPoint> m_points;
-
 private:
     void setLeft(TetrisBlock* b) { m_left = b; }
     void setRight(TetrisBlock* b) { m_right = b; }
+
 	Block_Type m_shape;
 	Color_Type m_color;
 	unsigned int m_maxChangeTime;
     unsigned int m_changedTime;
 	TetrisBlock* m_left;
 	TetrisBlock* m_right;
+    std::vector<Piece*> m_pieces;
+    std::vector<JJPoint> m_points;
     int m_bitData[4];
 };
 

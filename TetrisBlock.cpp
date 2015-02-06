@@ -10,6 +10,7 @@ TetrisBlock::TetrisBlock(Block_Type shape, Color_Type color,
     memset(m_bitData, 0, 4);
     for (int i = 0; i < lst.size(); ++i) {
         m_bitData[lst[i].x + 2] |=  1 << (lst[i].y + 2);
+
         m_points.push_back(JJPoint(lst[i].x, lst[i].y));
     }
 }

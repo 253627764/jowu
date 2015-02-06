@@ -14,10 +14,10 @@ public:
 	void updateStar(float delta);
 	void onTouch(const Point& p);
 	void setNeedClear(bool b);
-	 void initMatrix();
-	
+    void initMatrix();
+
 private:
-   
+
 	Point getPositionByIndex(int i,int j);
 	Star* getStarByTouch(const Point& p);
 	void genSelectedList(Star* s);

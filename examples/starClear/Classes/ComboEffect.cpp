@@ -15,8 +15,8 @@ void showComboEffect(int size,Node* node){
 	comboSprite->setPosition(Point(visibleSize.width/2,visibleSize.height/2));
 	node->addChild(comboSprite);
 
-	Blink* blink = Blink::create(1.0f,5);
-	CallFunc* remove = CallFunc::create([=](){comboSprite->removeFromParentAndCleanup(true);});
-	Sequence* action = Sequence::create(blink,remove,nullptr);
-	comboSprite->runAction(action);
+    Blink* blink = Blink::create(1.0f,5);
+    CallFunc* remove = CallFunc::create([=](){comboSprite->removeFromParentAndCleanup(true);});
+    Sequence* action = Sequence::create(blink,remove,nullptr);
+    comboSprite->runAction(action);
 }
