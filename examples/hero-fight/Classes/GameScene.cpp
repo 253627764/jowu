@@ -17,5 +17,3 @@ Scene* GameScene::createScene()
 
 	return scene;
 }
-
-

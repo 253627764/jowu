@@ -1,11 +1,11 @@
 #include "GamePanel.h"
+#include "Piece.h"
 
 class PanelData;
 PanelData* GetPanelInstance()
 {
     return NULL;//PanelData::instance();
 }
-
 
 class PanelData
 {

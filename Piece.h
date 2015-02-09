@@ -1,6 +1,8 @@
 #ifndef PIECE_H
 #define PIECE_H
 
+#include "TetrisDef.h"
+
 class Piece : public cocos2d::Sprite
 {
     JJ_DISCPY(Piece)
@@ -38,8 +40,6 @@ private:
     unsigned int m_x;
     unsigned int m_y;
     Color_Type m_color;
-
 };
-
 
 #endif // PIECE_H
