@@ -4,6 +4,7 @@
 #include "TetrisDef.h"
 #include <cocos2d.h>
 #include <vector>
+#include "Piece.h"
 
 class TetrisBlock
 {
@@ -21,7 +22,8 @@ public:
 
     TetrisBlock* left() const { return m_left; }
     TetrisBlock* right() const { return m_right; }
-    std::vector<JJPoint> Points() const { return m_points; }
+	
+    std::vector<Piece*> Pieces() const { return m_pieces; }
 
 	virtual unsigned int wieght() const { return 0; }
 
@@ -36,7 +38,6 @@ private:
 	TetrisBlock* m_left;
 	TetrisBlock* m_right;
     std::vector<Piece*> m_pieces;
-    std::vector<JJPoint> m_points;
     int m_bitData[4];
 };
 

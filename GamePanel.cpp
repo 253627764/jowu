@@ -59,11 +59,14 @@ PanelData* PanelData::instance()
 
 bool PanelData::checkPosition(TetrisBlock* block, const JJPoint& pos)
 {
+	if (!block) {
+		return false;
+	}
 #if 1//NonBinary
 	int i;
-	for (i = 0; i < block->Points().size(); ++i) {
-		int _x = block->Points()[i].x + pos.x;
-		int _y = block->Points()[i].y + pos.y;
+	for (i = 0; i < block->Pieces().size(); ++i) {
+		int _x = block->Pieces()[i].getPosition().x + pos.x;
+		int _y = block->Pieces()[i].getPosition.y + pos.y;
 		if (0 > _x || PanelWidth < _x || 0 > _y || PanelHeight < _y) {
 			return false;
 		}
@@ -81,10 +84,14 @@ bool PanelData::checkPosition(TetrisBlock* block, const JJPoint& pos)
 
 bool PanelData::update(TetrisBlock* block, const JJPoint &pos)
 {
+	if (!block) {
+		return false;
+	}
+
 	int i;
-	for (i = 0; i < block->Points().size(); ++i) {
-		int x = block->Points()[i].x + pos.x;
-		int y = block->Points()[i].y + pos.y;
+	for (i = 0; i < block->Pieces().size(); ++i) {
+		int x = block->Pieces()[i].x + pos.x;
+		int y = block->Pieces()[i].y + pos.y;
 		if ((0 > x || PanelWidth < x) || (0 > y || PanelHeight < y)) {
 			return false;
 		}
@@ -116,7 +123,7 @@ void PanelData::moveByLines(unsigned int form, unsigned int to)
 	}
 
 	for (int i = 0; i < PanelWidth; ++i) {
-        m_pieces[i][form].clone(m_pieces[i][to]);
+		m_pieces[i][form].setPositionY(to);
 	}
 }
 
@@ -184,7 +191,7 @@ void PanelData::reset()
 	int i, j;
 	for (i = 0; i < PanelHeight; ++i) {
 		for (j = 0; j < PanelWidth; ++j) {
-			m_pieces[i][j].reset(Color_Black);
+			m_pieces[i][j].removeFromParentAndCleanup(false);
 		}
 	}
 }

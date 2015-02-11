@@ -27,6 +27,18 @@
     <ClCompile Include="..\TetrisBlock.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="..\TetrisScene.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TetrisLayer.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Piece.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OperatorLayer.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -45,6 +57,18 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\TetrisDef.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TetrisScene.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TetrisLayer.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Piece.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OperatorLayer.h">
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
