@@ -2,9 +2,6 @@
 #define TETRIS_LAYGER_H
 
 #include "cocos2d.h"
-
-
-
 #include "GamePanel.h"
 #include "TetrisDef.h"
 #include "TetrisBlock.h"

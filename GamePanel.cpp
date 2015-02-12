@@ -90,7 +90,7 @@ bool PanelData::update(TetrisBlock* block, const JJPoint &pos)
 
 	int i;
 	for (i = 0; i < block->Pieces().size(); ++i) {
-		int x = block->Pieces()[i].x + pos.x;
+		int x = block->pieces()
 		int y = block->Pieces()[i].y + pos.y;
 		if ((0 > x || PanelWidth < x) || (0 > y || PanelHeight < y)) {
 			return false;
@@ -179,7 +179,8 @@ unsigned int PanelData::collapse()
 
 	for (i = 0; i < dropLine; ++i) {
 		for (j = 0; j < PanelWidth; ++j) {
-			m_pieces[i][j].reset(Color_Black);
+			//m_pieces[i][j]????????(Color_Black); // clear
+
 		}
 	}
 
@@ -210,6 +211,7 @@ bool GamePanel::down()
 	if (m_block && m_panel) {
 		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x, m_pos.y + 1))) {
 			++m_pos.y;
+			m_block->locate(m_pos.x, m_pos.y + 1);
 			return true;
 		}
 	}
@@ -222,6 +224,7 @@ bool GamePanel::moveLeft()
 	if (m_block && m_panel) {
 		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x - 1, m_pos.y))) {
 			--m_pos.x;
+			m_block->locate(m_pos.x - 1, m_pos.y);
 			return true;
 		}
 	}
@@ -234,6 +237,7 @@ bool GamePanel::moveRight()
 	if (m_block && m_panel) {
 		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x + 1, m_pos.y))) {
 			++m_pos.x;
+			m_block->locate(m_pos.x + 1, m_pos.y);
 			return true;
 		}
 	}
@@ -244,15 +248,16 @@ bool GamePanel::moveRight()
 bool GamePanel::rotate(bool clockWise)
 {
 	TetrisBlock* block;
+	
 	if (m_block && m_panel) {
-		block = clockWise ? m_block->right() : m_block->left();
+		
         int offset;
 		for (offset = 0; offset < PanelWidth; ++offset) {
 			if (m_panel->checkPosition(block, JJPoint((m_pos.x + offset) % PanelWidth, m_pos.y))) {
 				break;
 			}
 		}
-
+		//debug!!
 		m_pos.x = (m_pos.x + offset) % PanelWidth;
 		m_block = block;
 	}
