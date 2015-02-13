@@ -3,7 +3,7 @@
 Piece::Piece(State_Type state = State_Invalid, Color_Type color = Color_Invalid)
 	: m_state(state), m_color(color)
 {
-	memset(&m_absPos, -1, sizeof(JJPoint));
+	memset(&m_offset, -1, sizeof(JJPoint));
 }
 
 Piece* Piece::create(Color_Type color, const JJPoint& pos)
@@ -12,7 +12,7 @@ Piece* Piece::create(Color_Type color, const JJPoint& pos)
 	if (ret && ret->initWithFile(ret->getImageByColor(color))){
 		ret->setState(State_Fill);
 		ret->setColor(color);
-		ret->setAbsPosition(pos);
+		ret->setOffset(pos.x , pos.y);
 		ret->autorelease();
 		return ret;
 	}
@@ -23,16 +23,10 @@ Piece* Piece::create(Color_Type color, const JJPoint& pos)
 	}
 }
 
-void Piece::setAbsPos(float x, float y)
+void Piece::setOffset(float x, float y)
 {
-	m_absPos.x = x;
-	m_absPos.y = y;
-}
-
-void Piece::setAbsPos(const JJPoint& pos)
-{
-	m_absPos.x = pos.x;
-	m_absPos.y = pos.y;
+	m_offset.x = x;
+	m_offset.y = y;
 }
 
 char* Piece::getImageByColor(Color_Type color)

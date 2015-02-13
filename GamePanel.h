@@ -8,31 +8,31 @@
 #define PanelWidth 12
 #define PanelHeight 24
 static const int NextNum = 3;
-class PanelData;
+
 class GamePanel
 {
-    JJ_DISCPY(GamePanel)
-    unsigned int m_speed;
-    JJPoint m_pos;
-    TetrisBlock* m_block;
-    TetrisBlock m_nextBlocks[NextNum];
-    PanelData* m_panel;
 public:
-    GamePanel();
+    GamePanel(unsigned int width = PanelWidth, unsigned int height = PanelHeight);
+    virtual ~GamePanel() {}
+    static GamePanel* instance();
+	//inline Piece getPiece(unsigned int x, unsigned int y) const;
 
-    bool addBlockToPanel(TetrisBlock *block, const JJPoint &pos);
-    bool down();
-    bool moveLeft();
-    bool moveRight();
-    bool rotate(bool clockWise);
-    void drop();
-    unsigned int eliminateLines();
+    bool update(TetrisBlock* block, const JJPoint &pos);
+	bool checkPosition(TetrisBlock* block, const JJPoint& pos);
+	std::vector<int> eliminateLines();
+	unsigned int collapse();
+	void moveByLines(unsigned int form, unsigned int to);
+	unsigned int currentHeight() const;
+    bool elevate(unsigned int lines);
+    void reset();
 
-    //effect interface to do
-    void eggShell() {}
 private:
-    bool checkPosition(TetrisBlock* block, const JJPoint& pos);
-
+    static GamePanel* s_instance;
+private:
+	unsigned int m_width;
+	unsigned int m_height;
+    std::vector<unsigned int> m_data;
+    Piece **m_pieces;
 };
 
 

@@ -1,39 +1,7 @@
 #include "GamePanel.h"
 #include "Piece.h"
 
-class PanelData;
-PanelData* GetPanelInstance()
-{
-    return NULL;//PanelData::instance();
-}
-
-class PanelData
-{
-public:
-    PanelData(unsigned int width = PanelWidth, unsigned int height = PanelHeight);
-    virtual ~PanelData() {}
-    static PanelData* instance();
-	//inline Piece getPiece(unsigned int x, unsigned int y) const;
-
-    bool update(TetrisBlock* block, const JJPoint &pos);
-	bool checkPosition(TetrisBlock* block, const JJPoint& pos);
-	std::vector<int> eliminateLines();
-	unsigned int collapse();
-	void moveByLines(unsigned int form, unsigned int to);
-	unsigned int currentHeight() const;
-    bool elevate(unsigned int lines);
-    void reset();
-
-private:
-    static PanelData* s_instance;
-private:
-	unsigned int m_width;
-	unsigned int m_height;
-    std::vector<unsigned int> m_data;
-    Piece **m_pieces;
-};
-
-PanelData::PanelData(unsigned int width, unsigned int height)
+GamePanel::GamePanel(unsigned int width, unsigned int height)
 	: m_width(PanelWidth), m_height(PanelHeight)
 {
 	m_pieces = new Piece*[m_height];
@@ -48,25 +16,33 @@ PanelData::PanelData(unsigned int width, unsigned int height)
     }
 }
 
-PanelData* PanelData::instance()
+GamePanel* GamePanel::instance()
 {
 	if (!s_instance) {
-		s_instance = new PanelData();
+		s_instance = new GamePanel();
 	}
 
 	return s_instance;
 }
 
-bool PanelData::checkPosition(TetrisBlock* block, const JJPoint& pos)
+void GamePanel::destory()
+{
+	if (s_instance) {
+		delete s_instance;
+		s_instance = NULL;
+	}
+}
+
+bool GamePanel::checkPosition(TetrisBlock* block, const JJPoint& pos)
 {
 	if (!block) {
 		return false;
 	}
 #if 1//NonBinary
 	int i;
-	for (i = 0; i < block->Pieces().size(); ++i) {
-		int _x = block->Pieces()[i].getPosition().x + pos.x;
-		int _y = block->Pieces()[i].getPosition.y + pos.y;
+	for (i = 0; i < block->pieces().size(); ++i) {
+		int _x = block->onePiece(i)->offset().x + pos.x;
+		int _y = block->onePiece(i)->offset().y + pos.y;
 		if (0 > _x || PanelWidth < _x || 0 > _y || PanelHeight < _y) {
 			return false;
 		}
@@ -82,16 +58,16 @@ bool PanelData::checkPosition(TetrisBlock* block, const JJPoint& pos)
 #endif
 }
 
-bool PanelData::update(TetrisBlock* block, const JJPoint &pos)
+bool GamePanel::update(TetrisBlock* block, const JJPoint &pos)
 {
 	if (!block) {
 		return false;
 	}
 
 	int i;
-	for (i = 0; i < block->Pieces().size(); ++i) {
-		int x = block->pieces()
-		int y = block->Pieces()[i].y + pos.y;
+	for (i = 0; i < block->pieces.size(); ++i) {
+		int x = block->pieces()[i]->offset().x + pos.x;
+		int y = block->pieces()[i]->offset().y + pos.y;
 		if ((0 > x || PanelWidth < x) || (0 > y || PanelHeight < y)) {
 			return false;
 		}
@@ -100,6 +76,7 @@ bool PanelData::update(TetrisBlock* block, const JJPoint &pos)
 			return false;
 		}
 
+		m_pieces[x][y] = *(block->onePiece(i));
 		m_pieces[x][y].setState(State_Fill);
 		m_pieces[x][y].setColor(block->color());
 	}
@@ -107,7 +84,7 @@ bool PanelData::update(TetrisBlock* block, const JJPoint &pos)
 	return true;
 }
 /*
-Piece PanelData::getPiece(unsigned int x, unsigned int y) const
+Piece GamePanel::getPiece(unsigned int x, unsigned int y) const
 {
 	if ((0 <= x && PanelWidth > x) || (0 <= y && PanelHeight > y)) {
 		return m_pieces[x][y];
@@ -116,7 +93,7 @@ Piece PanelData::getPiece(unsigned int x, unsigned int y) const
 	return Piece();
 }*/
 
-void PanelData::moveByLines(unsigned int form, unsigned int to)
+void GamePanel::moveByLines(unsigned int form, unsigned int to)
 {
 	if (PanelHeight <= form || PanelHeight <= to) {
 		return;
@@ -127,7 +104,7 @@ void PanelData::moveByLines(unsigned int form, unsigned int to)
 	}
 }
 
-std::vector<int> PanelData::eliminateLines()
+std::vector<int> GamePanel::eliminateLines()
 {
 	std::vector<int> clearLayer;
     int i;
@@ -149,7 +126,7 @@ std::vector<int> PanelData::eliminateLines()
     return clearLayer;
 }
 
-bool PanelData::elevate(unsigned int lines)
+bool GamePanel::elevate(unsigned int lines)
 {
 	if (PanelHeight >= (currentHeight() + lines)) {
 		return false;
@@ -164,7 +141,7 @@ bool PanelData::elevate(unsigned int lines)
 }
 
 //box2d will added further
-unsigned int PanelData::collapse()
+unsigned int GamePanel::collapse()
 {
 	int i, j;
 	unsigned int dropLine = 0;
@@ -187,7 +164,7 @@ unsigned int PanelData::collapse()
 	return dropLine;
 }
 
-void PanelData::reset()
+void GamePanel::reset()
 {
 	int i, j;
 	for (i = 0; i < PanelHeight; ++i) {
@@ -208,7 +185,7 @@ bool GamePanel::addBlockToPanel(TetrisBlock *block, const JJPoint &pos)
 
 bool GamePanel::down()
 {
-	if (m_block && m_panel) {
+	if (m_block) {
 		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x, m_pos.y + 1))) {
 			++m_pos.y;
 			m_block->locate(m_pos.x, m_pos.y + 1);
@@ -221,7 +198,7 @@ bool GamePanel::down()
 
 bool GamePanel::moveLeft()
 {
-	if (m_block && m_panel) {
+	if (m_block) {
 		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x - 1, m_pos.y))) {
 			--m_pos.x;
 			m_block->locate(m_pos.x - 1, m_pos.y);

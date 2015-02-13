@@ -1,34 +1,23 @@
-#ifndef TETRIS_LAYGER_H
-#define TETRIS_LAYGER_H
-
-#include "cocos2d.h"
-#include "GamePanel.h"
+#ifndef TETRISLAYER_H
+#define TETRISLAYER_H
 #include "TetrisDef.h"
 #include "TetrisBlock.h"
-
-#define PanelInst GetPanelInstance();
+#include "GamePanel.h"
 
 #define PanelWidth 12
 #define PanelHeight 24
 static const int NextNum = 3;
 
-class TetrisLayer : public cocos2d::Layer
+class TetrisLayer
 {
-    int m_x;
-    int m_y;
-};
-
-class PanelData;
-class GamePanel
-{
-    JJ_DISCPY(GamePanel)
+    JJ_DISCPY(TetrisLayer)
     unsigned int m_speed;
     JJPoint m_pos;
     TetrisBlock* m_block;
     TetrisBlock m_nextBlocks[NextNum];
-    PanelData* m_panel;
+    GamePanel* m_panel;
 public:
-    GamePanel();
+    TetrisLayer();
 
     bool addBlockToPanel(TetrisBlock *block, const JJPoint &pos);
     bool down();
@@ -42,8 +31,9 @@ public:
     void eggShell() {}
 private:
     bool checkPosition(TetrisBlock* block, const JJPoint& pos);
+
 };
 
 
 
-#endif
+#endif // TETRISLAYER_H

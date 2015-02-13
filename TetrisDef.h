@@ -54,6 +54,14 @@ class JJPoint
 public:
     JJPoint(int _x = -1, int _y = -1)
     : x(_x), y(_y) {}
+	JJPoint(const JJPoint& rhs)
+		: x(rhs.x), y(rhs.y) {}
+	JJPoint& operator= (const JJPoint& rhs)
+	{
+		x = rhs.x;
+		y = rhs.y;
+	}
+
 	int x;
 	int y;
 };

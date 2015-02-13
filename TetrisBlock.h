@@ -20,6 +20,7 @@ public:
 	unsigned int maxChangeTime() const { return m_maxChangeTime; }
 
     std::vector<Piece*> pieces() const { return m_pieces; }
+	Piece* onePiece(unsigned int index) const { return m_pieces[i]; }
 	virtual unsigned int wieght() const { return 0; }
 
 
