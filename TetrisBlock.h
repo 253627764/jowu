@@ -23,8 +23,10 @@ public:
 	Piece* onePiece(unsigned int index) const { return m_pieces[i]; }
 	virtual unsigned int wieght() const { return 0; }
 
+	JJPoint position() const { return m_pos; }
+	void setPosition(const JJPoint& pos) { m_pos = pos; }
 
-	bool rotate(bool clockWise);
+	TetrisBlock* rotate(bool clockWise);
 	//sync position with sprite
 	bool locate(float x, float y);
 

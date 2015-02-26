@@ -39,6 +39,9 @@
     <ClCompile Include="..\OperatorLayer.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="BlockGroup.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -69,6 +72,9 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\OperatorLayer.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockGroup.h">
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>

@@ -141,6 +141,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\TetrisBlock.cpp" />
     <ClCompile Include="..\TetrisLayer.cpp" />
     <ClCompile Include="..\TetrisScene.cpp" />
+    <ClCompile Include="BlockGroup.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\TetrisDef.h" />
     <ClInclude Include="..\TetrisLayer.h" />
     <ClInclude Include="..\TetrisScene.h" />
+    <ClInclude Include="BlockGroup.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

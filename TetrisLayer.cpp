@@ -3,83 +3,52 @@
 
 bool TetrisLayer::addBlockToPanel(TetrisBlock *block, const JJPoint &pos)
 {
-	if (m_panel) {
-		return m_panel->update(block, pos);
-	}
-
-	return false;
+	if (!m_panel || !block) return false;
+	return m_panel->addBlockToPanel(block, pos);
 }
 
 bool TetrisLayer::down()
 {
-	if (m_block && m_panel) {
-		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x, m_pos.y + 1))) {
-			++m_pos.y;
-			m_block->locate(m_pos.x, m_pos.y + 1);
-			return true;
-		}
-	}
-
-	return false;
+	if (!m_panel) return false;
+	m_panel->down();
 }
 
 bool TetrisLayer::moveLeft()
 {
-	if (m_block && m_panel) {
-		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x - 1, m_pos.y))) {
-			--m_pos.x;
-			m_block->locate(m_pos.x - 1, m_pos.y);
-			return true;
-		}
-	}
-
-	return false;
+	if (!m_panel) return false;
+	m_panel->moveLeft();
 }
 
-bool GamePanel::moveRight()
+bool TetrisLayer::moveRight()
 {
-	if (m_block && m_panel) {
-		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x + 1, m_pos.y))) {
-			++m_pos.x;
-			m_block->locate(m_pos.x + 1, m_pos.y);
-			return true;
-		}
-	}
-
-	return false;
+	if (!m_panel) return false;
+	m_panel->moveRight();
 }
 
-bool GamePanel::rotate(bool clockWise)
+bool TetrisLayer::rotate(bool clockWise)
 {
-	TetrisBlock* block;
-	
-	if (m_block && m_panel) {
-		
-        int offset;
-		for (offset = 0; offset < PanelWidth; ++offset) {
-			if (m_panel->checkPosition(block, JJPoint((m_pos.x + offset) % PanelWidth, m_pos.y))) {
-				break;
-			}
-		}
-		//debug!!
-		m_pos.x = (m_pos.x + offset) % PanelWidth;
-		m_block = block;
-	}
-
-	return false;
+	if (!m_panel) return false;
+	m_panel->rotate(clockWise);
 }
 
-void GamePanel::drop()
+bool TetrisLayer::drop()
 {
-	int i;
-	for (i = 0; i < PanelHeight - m_pos.y; ++i) {
-		if (!m_panel->checkPosition(m_block,
-			JJPoint(m_pos.x, m_pos.y + i))) {
-			break;
-		}
-	}
+	if (!m_panel) return false;
+	m_panel->drop();
+}
 
-	m_pos.y += i;
-	//add block to panel
-	//addBlockToPanel();
+TetrisBlock* TetrisLayer::block()
+{
+	if (!m_panel) return nullptr;
+	return m_panel->block();
+}
+JJPoint TetrisLayer::position()
+{
+	if (!m_panel) return JJPoint(-1, -1);
+	return m_panel->position();
+}
+unsigned int TetrisLayer::speed()
+{
+	if (!m_panel) return -1;
+	return m_panel->speed();
 }

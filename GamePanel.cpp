@@ -1,14 +1,11 @@
 #include "GamePanel.h"
 #include "Piece.h"
 
+#define pixel 20
+
 GamePanel::GamePanel(unsigned int width, unsigned int height)
 	: m_width(PanelWidth), m_height(PanelHeight)
-{
-	m_pieces = new Piece*[m_height];
-    for (int i = 0; i < m_height; ++i) {
-        m_pieces[i] = new Piece[m_width];
-    }
-    
+{  
 	if (!m_data.empty()) m_data.clear();
 
 	for (int i = 0; i < m_height; i++) {
@@ -16,21 +13,22 @@ GamePanel::GamePanel(unsigned int width, unsigned int height)
     }
 }
 
-GamePanel* GamePanel::instance()
+GamePanel* GamePanel::create()
 {
-	if (!s_instance) {
-		s_instance = new GamePanel();
+	GamePanel* ret = new GamePanel();
+	if (ret && ret->init()) {
+		ret->autorelease();
+		return ret;
 	}
 
-	return s_instance;
+	CC_SAFE_DELETE(ret);
+	return ret;
 }
 
-void GamePanel::destory()
+bool GamePanel::init()
 {
-	if (s_instance) {
-		delete s_instance;
-		s_instance = NULL;
-	}
+	memset(m_pieces, 0, sizeof(Piece) * PanelWidth * PanelHeight);
+	return true;
 }
 
 bool GamePanel::checkPosition(TetrisBlock* block, const JJPoint& pos)
@@ -47,7 +45,7 @@ bool GamePanel::checkPosition(TetrisBlock* block, const JJPoint& pos)
 			return false;
 		}
 		
-		if (State_Hollow != m_pieces[_x][_y].State()) {
+		if (State_Hollow != m_pieces[_x][_y]->State()) {
 			return false;
 		}
 	}
@@ -58,7 +56,7 @@ bool GamePanel::checkPosition(TetrisBlock* block, const JJPoint& pos)
 #endif
 }
 
-bool GamePanel::update(TetrisBlock* block, const JJPoint &pos)
+bool GamePanel::addBlockToPanel(TetrisBlock* block, const JJPoint &pos)
 {
 	if (!block) {
 		return false;
@@ -72,36 +70,16 @@ bool GamePanel::update(TetrisBlock* block, const JJPoint &pos)
 			return false;
 		}
 		
-		if (State_Hollow != m_pieces[x][y].State()) {
+		if (State_Hollow != m_pieces[x][y]->State()) {
 			return false;
 		}
 
-		m_pieces[x][y] = *(block->onePiece(i));
-		m_pieces[x][y].setState(State_Fill);
-		m_pieces[x][y].setColor(block->color());
+		m_pieces[x][y] = block->onePiece(i);
+		m_pieces[x][y]->setState(State_Fill);
+		m_pieces[x][y]->setColor(block->color());
 	}
 
 	return true;
-}
-/*
-Piece GamePanel::getPiece(unsigned int x, unsigned int y) const
-{
-	if ((0 <= x && PanelWidth > x) || (0 <= y && PanelHeight > y)) {
-		return m_pieces[x][y];
-	}
-
-	return Piece();
-}*/
-
-void GamePanel::moveByLines(unsigned int form, unsigned int to)
-{
-	if (PanelHeight <= form || PanelHeight <= to) {
-		return;
-	}
-
-	for (int i = 0; i < PanelWidth; ++i) {
-		m_pieces[i][form].setPositionY(to);
-	}
 }
 
 std::vector<int> GamePanel::eliminateLines()
@@ -112,7 +90,7 @@ std::vector<int> GamePanel::eliminateLines()
 	for (i = PanelHeight; i >= 0; --i) {
         bool clear = true;
         for (j = 0;j < PanelWidth; j++) {
-            if (State_Fill != m_pieces[i][j].State()) {
+            if (State_Fill != m_pieces[i][j]->State()) {
                 clear = false;
                 break;
             }
@@ -128,25 +106,15 @@ std::vector<int> GamePanel::eliminateLines()
 
 bool GamePanel::elevate(unsigned int lines)
 {
-	if (PanelHeight >= (currentHeight() + lines)) {
-		return false;
-	}
-	
-	//except that i+2 will be overrided, elevate from the top.
-	for(int i = PanelHeight - lines; i >= 0 ; --i) {
-		moveByLines(i, i + lines);
-	}
-
 	return true;
 }
 
-//box2d will added further
 unsigned int GamePanel::collapse()
 {
 	int i, j;
 	unsigned int dropLine = 0;
-	for (i = PanelHeight; i >= 0; --i) {
-		if (State_Effect == m_pieces[0][i].State()) {
+	for (i = 0; i < PanelHeight; ++i) {
+		if (State_Effect == m_pieces[0][i]->State()) {
 			++dropLine;
 			continue;
 		}
@@ -154,10 +122,9 @@ unsigned int GamePanel::collapse()
 		moveByLines(i, i - dropLine);
 	}
 
-	for (i = 0; i < dropLine; ++i) {
+	for (i = PanelHeight; i > PanelHeight - dropLine; --i) {
 		for (j = 0; j < PanelWidth; ++j) {
-			//m_pieces[i][j]????????(Color_Black); // clear
-
+			m_pieces[i][j] = nullptr;
 		}
 	}
 
@@ -169,24 +136,16 @@ void GamePanel::reset()
 	int i, j;
 	for (i = 0; i < PanelHeight; ++i) {
 		for (j = 0; j < PanelWidth; ++j) {
-			m_pieces[i][j].removeFromParentAndCleanup(false);
+			m_pieces[i][j]->removeFromParentAndCleanup(false);
+			m_pieces[i][j] = nullptr;
 		}
 	}
-}
-
-bool GamePanel::addBlockToPanel(TetrisBlock *block, const JJPoint &pos)
-{
-	if (m_panel) {
-		return m_panel->update(block, pos);
-	}
-
-	return false;
 }
 
 bool GamePanel::down()
 {
 	if (m_block) {
-		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x, m_pos.y + 1))) {
+		if (checkPosition(m_block, JJPoint(m_pos.x, m_pos.y + 1))) {
 			++m_pos.y;
 			m_block->locate(m_pos.x, m_pos.y + 1);
 			return true;
@@ -199,7 +158,7 @@ bool GamePanel::down()
 bool GamePanel::moveLeft()
 {
 	if (m_block) {
-		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x - 1, m_pos.y))) {
+		if (checkPosition(m_block, JJPoint(m_pos.x - 1, m_pos.y))) {
 			--m_pos.x;
 			m_block->locate(m_pos.x - 1, m_pos.y);
 			return true;
@@ -211,8 +170,8 @@ bool GamePanel::moveLeft()
 
 bool GamePanel::moveRight()
 {
-	if (m_block && m_panel) {
-		if (m_panel->checkPosition(m_block, JJPoint(m_pos.x + 1, m_pos.y))) {
+	if (m_block) {
+		if (checkPosition(m_block, JJPoint(m_pos.x + 1, m_pos.y))) {
 			++m_pos.x;
 			m_block->locate(m_pos.x + 1, m_pos.y);
 			return true;
@@ -224,13 +183,13 @@ bool GamePanel::moveRight()
 
 bool GamePanel::rotate(bool clockWise)
 {
-	TetrisBlock* block;
+	TetrisBlock* block = m_block->rotate(clockWise);
 	
-	if (m_block && m_panel) {
+	if (m_block) {
 		
         int offset;
 		for (offset = 0; offset < PanelWidth; ++offset) {
-			if (m_panel->checkPosition(block, JJPoint((m_pos.x + offset) % PanelWidth, m_pos.y))) {
+			if (checkPosition(block, JJPoint((m_pos.x + offset) % PanelWidth, m_pos.y))) {
 				break;
 			}
 		}
@@ -242,17 +201,35 @@ bool GamePanel::rotate(bool clockWise)
 	return false;
 }
 
-void GamePanel::drop()
+bool GamePanel::drop()
 {
 	int i;
-	for (i = 0; i < PanelHeight - m_pos.y; ++i) {
-		if (!m_panel->checkPosition(m_block,
-			JJPoint(m_pos.x, m_pos.y + i))) {
-			break;
+	for (i = PanelHeight - m_pos.y; i >= 0 ; --i) {
+		if (checkPosition(m_block, JJPoint(m_pos.x, i))) {
+			continue;
 		}
+
+		m_pos.y = i - 1;
+		m_block->locate(m_pos.x, i - 1);
+		return true;
+	}
+    
+	return false;
+}
+
+void GamePanel::adjustPanel()
+{
+	//
+
+}
+
+void GamePanel::moveByLines(unsigned int form, unsigned int to)
+{
+	if (PanelHeight <= form || PanelHeight <= to) {
+		return;
 	}
 
-	m_pos.y += i;
-	//add block to panel
-	//addBlockToPanel();
+	for (int i = 0; i < PanelWidth; ++i) {
+		m_pieces[i][form]->setDestinationY(to);
+	}
 }

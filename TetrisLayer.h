@@ -11,10 +11,7 @@ static const int NextNum = 3;
 class TetrisLayer
 {
     JJ_DISCPY(TetrisLayer)
-    unsigned int m_speed;
-    JJPoint m_pos;
-    TetrisBlock* m_block;
-    TetrisBlock m_nextBlocks[NextNum];
+    
     GamePanel* m_panel;
 public:
     TetrisLayer();
@@ -24,16 +21,16 @@ public:
     bool moveLeft();
     bool moveRight();
     bool rotate(bool clockWise);
-    void drop();
-    unsigned int eliminateLines();
+    bool drop();
 
-    //effect interface to do
+	TetrisBlock* block();
+	JJPoint position();
+	unsigned int speed();
+
+	//effect interface to do
     void eggShell() {}
 private:
     bool checkPosition(TetrisBlock* block, const JJPoint& pos);
 
 };
-
-
-
 #endif // TETRISLAYER_H
