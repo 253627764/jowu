@@ -20,11 +20,8 @@ public:
 	unsigned int maxChangeTime() const { return m_maxChangeTime; }
 
     std::vector<Piece*> pieces() const { return m_pieces; }
-	Piece* onePiece(unsigned int index) const { return m_pieces[i]; }
+	Piece* onePiece(unsigned int index) const { return m_pieces[index]; }
 	virtual unsigned int wieght() const { return 0; }
-
-	JJPoint position() const { return m_pos; }
-	void setPosition(const JJPoint& pos) { m_pos = pos; }
 
 	TetrisBlock* rotate(bool clockWise);
 	//sync position with sprite

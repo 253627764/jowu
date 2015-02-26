@@ -63,7 +63,7 @@ bool GamePanel::addBlockToPanel(TetrisBlock* block, const JJPoint &pos)
 	}
 
 	int i;
-	for (i = 0; i < block->pieces.size(); ++i) {
+	for (i = 0; i < block->pieces().size(); ++i) {
 		int x = block->pieces()[i]->offset().x + pos.x;
 		int y = block->pieces()[i]->offset().y + pos.y;
 		if ((0 > x || PanelWidth < x) || (0 > y || PanelHeight < y)) {
@@ -111,20 +111,28 @@ bool GamePanel::elevate(unsigned int lines)
 
 unsigned int GamePanel::collapse()
 {
-	int i, j;
-	unsigned int dropLine = 0;
-	for (i = 0; i < PanelHeight; ++i) {
-		if (State_Effect == m_pieces[0][i]->State()) {
-			++dropLine;
-			continue;
+    int dropLine = 0;
+	int w, h;
+	for (h = 0; h < PanelHeight; ++h) {
+		//checkout if the line of the height be kill
+		bool killed = true;
+		for (w = 0; w < PanelWidth; ++w) {
+			if (State_Fill != m_pieces[w][h]->State()) {
+				killed = false;
+				break;
+			}
 		}
 
-		moveByLines(i, i - dropLine);
+		if (killed) ++dropLine;
+		for (w = 0; w < PanelWidth; ++w) {
+			m_pieces[w][h + dropLine]->setDestinationY(h);
+			m_pieces[w][h] = m_pieces[w][h + dropLine];
+		}
 	}
 
-	for (i = PanelHeight; i > PanelHeight - dropLine; --i) {
-		for (j = 0; j < PanelWidth; ++j) {
-			m_pieces[i][j] = nullptr;
+	for (h = PanelHeight; h > PanelHeight - dropLine; --h) {
+		for (w = 0; w < PanelWidth; ++w) {
+			m_pieces[w][h] = nullptr;
 		}
 	}
 
@@ -220,7 +228,7 @@ bool GamePanel::drop()
 void GamePanel::adjustPanel()
 {
 	//
-
+	
 }
 
 void GamePanel::moveByLines(unsigned int form, unsigned int to)

@@ -6,7 +6,6 @@
 
 #define PanelWidth 12
 #define PanelHeight 24
-static const int NextNum = 3;
 
 class TetrisLayer
 {

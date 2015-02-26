@@ -60,6 +60,7 @@ public:
 	{
 		x = rhs.x;
 		y = rhs.y;
+		return *this;
 	}
 
 	int x;

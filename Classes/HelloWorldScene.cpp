@@ -21,7 +21,6 @@ Scene* HelloWorld::createScene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    BlockGroup b;
     //////////////////////////////
     // 1. super init first
     if ( !Layer::init() )

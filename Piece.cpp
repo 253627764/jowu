@@ -1,6 +1,6 @@
 #include "Piece.h"
 
-Piece::Piece(State_Type state = State_Invalid, Color_Type color = Color_Invalid)
+Piece::Piece(State_Type state, Color_Type color)
 	: m_state(state), m_color(color)
 {
 	memset(&m_offset, -1, sizeof(JJPoint));
