@@ -10,31 +10,31 @@ bool TetrisLayer::addBlockToPanel(TetrisBlock *block, const JJPoint &pos)
 bool TetrisLayer::down()
 {
 	if (!m_panel) return false;
-	m_panel->down();
+	return m_panel->down();
 }
 
 bool TetrisLayer::moveLeft()
 {
 	if (!m_panel) return false;
-	m_panel->moveLeft();
+	return m_panel->moveLeft();
 }
 
 bool TetrisLayer::moveRight()
 {
 	if (!m_panel) return false;
-	m_panel->moveRight();
+	return m_panel->moveRight();
 }
 
 bool TetrisLayer::rotate(bool clockWise)
 {
 	if (!m_panel) return false;
-	m_panel->rotate(clockWise);
+	return m_panel->rotate(clockWise);
 }
 
 bool TetrisLayer::drop()
 {
 	if (!m_panel) return false;
-	m_panel->drop();
+	return m_panel->drop();
 }
 
 TetrisBlock* TetrisLayer::block()

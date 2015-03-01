@@ -1,7 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include "math\Vec2.h"
+//#include "math\Vec2.h"
 #include "TetrisDef.h"
 #include "cocos2d.h"
 

@@ -1,5 +1,6 @@
 #include "GamePanel.h"
 #include "Piece.h"
+#include "BlockGroup.h"
 
 #define pixel 20
 
@@ -28,6 +29,11 @@ GamePanel* GamePanel::create()
 bool GamePanel::init()
 {
 	memset(m_pieces, 0, sizeof(Piece) * PanelWidth * PanelHeight);
+    m_block = BlockGroup::instance()->getBlock();
+    for (int i = 0; i < NEXT_BLOCK_COUNT; ++i) {
+        m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
+    }
+    
 	return true;
 }
 
@@ -78,7 +84,12 @@ bool GamePanel::addBlockToPanel(TetrisBlock* block, const JJPoint &pos)
 		m_pieces[x][y]->setState(State_Fill);
 		m_pieces[x][y]->setColor(block->color());
 	}
-
+    
+    
+    m_block = m_nextBlocks.front();
+    m_nextBlocks.pop_front();
+    m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
+    
 	return true;
 }
 
@@ -123,10 +134,16 @@ unsigned int GamePanel::collapse()
 			}
 		}
 
-		if (killed) ++dropLine;
+        if (killed) {
+            // play animation ~
+            m_pieces[w][h]->removeAllChildrenWithCleanup(true);
+            ++dropLine;
+            
+        }
 		for (w = 0; w < PanelWidth; ++w) {
 			m_pieces[w][h + dropLine]->setDestinationY(h);
 			m_pieces[w][h] = m_pieces[w][h + dropLine];
+            
 		}
 	}
 

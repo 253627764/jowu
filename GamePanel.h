@@ -2,7 +2,9 @@
 #define GAMEPANEL_H
 #include "TetrisDef.h"
 #include "TetrisBlock.h"
+#include "cocos2d.h"
 using namespace cocos2d;
+
 #define PanelInst GetPanelInstance();
 
 #define PanelWidth 12
@@ -61,7 +63,7 @@ private:
 	unsigned int m_speed; // not handle yet
     std::vector<unsigned int> m_data;
 	TetrisBlock* m_block;
-	TetrisBlock* m_nextBlocks[3];// not handle yet
+    std::list<TetrisBlock*> m_nextBlocks;
 	JJPoint m_pos;
     Piece* m_pieces[PanelWidth][PanelHeight];
 	

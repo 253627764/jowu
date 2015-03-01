@@ -1,9 +1,20 @@
 #include "BlockGroup.h"
 
+BlockGroup* BlockGroup::s_instance = nullptr;
+
 BlockGroup::BlockGroup()
 {
     printf("BlockGroup::BlockGroup\n");
     initialize();
+}
+
+BlockGroup* BlockGroup::instance()
+{
+    if (!s_instance) {
+        s_instance = new BlockGroup();
+    }
+    
+    return s_instance;
 }
 
 bool BlockGroup::addBlockToGroup(Block_Type shape, Color_Type color,
@@ -16,6 +27,16 @@ bool BlockGroup::addBlockToGroup(Block_Type shape, Color_Type color,
     }
 
     return true;
+}
+
+TetrisBlock* BlockGroup::getBlock()
+{
+    if (m_blocks.empty()) {
+        return nullptr;
+    }
+    
+    int rd = rand() % m_blocks.size();
+    return m_blocks[rd];
 }
 
 void BlockGroup::initialize()
