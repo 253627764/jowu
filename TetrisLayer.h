@@ -7,13 +7,12 @@
 #define PanelWidth 12
 #define PanelHeight 24
 
-class TetrisLayer
+class TetrisLayer : public cocos2d::Layer
 {
-    JJ_DISCPY(TetrisLayer)
-    
-    GamePanel* m_panel;
 public:
-    TetrisLayer();
+	virtual bool init();
+	CREATE_FUNC(TetrisLayer);
+	~TetrisLayer();
 
     bool addBlockToPanel(TetrisBlock *block, const JJPoint &pos);
     bool down();
@@ -29,7 +28,7 @@ public:
 	//effect interface to do
     void eggShell() {}
 private:
-    bool checkPosition(TetrisBlock* block, const JJPoint& pos);
+	GamePanel *m_panel;
 
 };
 #endif // TETRISLAYER_H

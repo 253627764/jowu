@@ -14,13 +14,7 @@ static const int NextNum = 3;
 class GamePanel : public Node
 {
 public:
-    GamePanel(unsigned int width = PanelWidth, unsigned int height = PanelHeight);
-    virtual ~GamePanel() {}
-    static GamePanel* instance();
-
 	static GamePanel* create();
-
-	//inline Piece getPiece(unsigned int x, unsigned int y) const;
 	bool init();
 	void updatePiece();
 	
@@ -38,9 +32,6 @@ public:
 
 	JJPoint position() const { return m_pos; }
 	void setPosition(const JJPoint& pos) { m_pos = pos; }
-	
-
-
 	unsigned int currentHeight() const;
     bool elevate(unsigned int lines);
     void reset();
@@ -51,12 +42,9 @@ public:
 	bool drop();
 
 private:
-	void adjustPanel();
-	
 	void moveByLines(unsigned int form, unsigned int to);
+    void getRandomBlock();
 
-private:
-    static GamePanel* s_instance;
 private:
 	unsigned int m_width;
 	unsigned int m_height;

@@ -4,27 +4,15 @@
 #include "TetrisLayer.h"
 
 using namespace cocos2d;
-using namespace CocosDenshion;
-
-cocos2d::Scene* TetrisScene::createScene()
-{
-    auto scene = Scene::create();
-    //auto layer = Layer::create();
-    //scene->addchild(layer);
-    return scene;
-}
+#include "TetrisScene.h"
 
 bool TetrisScene::init()
 {
-    if (!Layer::init()) {
+    if (!Scene::init()) {
         return false;
     }
     
-    //add sth
+	//add audio
+	this->addChild(TetrisLayer::create());
     return true;
-}
-
-void TetrisScene::menuCloseCallback(cocos2d::Ref* pSender)
-{
-    
 }

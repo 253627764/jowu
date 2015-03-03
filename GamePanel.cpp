@@ -4,16 +4,6 @@
 
 #define pixel 20
 
-GamePanel::GamePanel(unsigned int width, unsigned int height)
-	: m_width(PanelWidth), m_height(PanelHeight)
-{  
-	if (!m_data.empty()) m_data.clear();
-
-	for (int i = 0; i < m_height; i++) {
-		m_data.push_back(0);
-    }
-}
-
 GamePanel* GamePanel::create()
 {
 	GamePanel* ret = new GamePanel();
@@ -28,12 +18,9 @@ GamePanel* GamePanel::create()
 
 bool GamePanel::init()
 {
+	int i;
 	memset(m_pieces, 0, sizeof(Piece) * PanelWidth * PanelHeight);
-    m_block = BlockGroup::instance()->getBlock();
-    for (int i = 0; i < NEXT_BLOCK_COUNT; ++i) {
-        m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
-    }
-    
+	getRandomBlock();   
 	return true;
 }
 
@@ -84,7 +71,6 @@ bool GamePanel::addBlockToPanel(TetrisBlock* block, const JJPoint &pos)
 		m_pieces[x][y]->setState(State_Fill);
 		m_pieces[x][y]->setColor(block->color());
 	}
-    
     
     m_block = m_nextBlocks.front();
     m_nextBlocks.pop_front();
@@ -138,8 +124,8 @@ unsigned int GamePanel::collapse()
             // play animation ~
             m_pieces[w][h]->removeAllChildrenWithCleanup(true);
             ++dropLine;
-            
         }
+
 		for (w = 0; w < PanelWidth; ++w) {
 			m_pieces[w][h + dropLine]->setDestinationY(h);
 			m_pieces[w][h] = m_pieces[w][h + dropLine];
@@ -211,7 +197,6 @@ bool GamePanel::rotate(bool clockWise)
 	TetrisBlock* block = m_block->rotate(clockWise);
 	
 	if (m_block) {
-		
         int offset;
 		for (offset = 0; offset < PanelWidth; ++offset) {
 			if (checkPosition(block, JJPoint((m_pos.x + offset) % PanelWidth, m_pos.y))) {
@@ -242,12 +227,6 @@ bool GamePanel::drop()
 	return false;
 }
 
-void GamePanel::adjustPanel()
-{
-	//
-	
-}
-
 void GamePanel::moveByLines(unsigned int form, unsigned int to)
 {
 	if (PanelHeight <= form || PanelHeight <= to) {
@@ -257,4 +236,13 @@ void GamePanel::moveByLines(unsigned int form, unsigned int to)
 	for (int i = 0; i < PanelWidth; ++i) {
 		m_pieces[i][form]->setDestinationY(to);
 	}
+}
+
+void GamePanel::getRandomBlock()
+{
+    m_block = BlockGroup::instance()->getBlock();
+	int i;
+    for (i = 0; i < NEXT_BLOCK_COUNT; ++i) {
+        m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
+    }
 }

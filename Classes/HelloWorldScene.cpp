@@ -1,5 +1,7 @@
 #include "HelloWorldScene.h"
 #include "TetrisBlock.h"
+#include "GameLayer.h"
+
 
 USING_NS_CC;
 
@@ -43,6 +45,8 @@ bool HelloWorld::init()
     
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
+
+
 
     // create menu, it's an autorelease object
     auto menu = Menu::create(closeItem, NULL);

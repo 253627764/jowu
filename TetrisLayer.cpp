@@ -1,6 +1,22 @@
 #include "TetrisLayer.h"
 #include "Piece.h"
 
+bool TetrisLayer::init()
+{
+	GamePanel::create();
+
+
+	return true;
+}
+
+TetrisLayer::~TetrisLayer()
+{
+	if (m_panel) {
+		delete m_panel;
+		m_panel = nullptr;
+	}
+}
+
 bool TetrisLayer::addBlockToPanel(TetrisBlock *block, const JJPoint &pos)
 {
 	if (!m_panel || !block) return false;
