@@ -26,6 +26,7 @@ bool BlockGroup::addBlockToGroup(Block_Type shape, Color_Type color,
         return false;
     }
 
+	m_blocks.push_back(block);
     return true;
 }
 
@@ -50,6 +51,16 @@ void BlockGroup::initialize()
         { { -1, 0 },  { 0, 0 },   { 1, 0 },   { 0, 1 } },//hill
         { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },//square
     };
+
+	static const Color_Type colorTable[7] = {
+		Color_Black,
+		Color_Red,
+		Color_Orange,
+		Color_Yellow,
+		Color_Green,
+		Color_Purple,
+		Color_Pink
+	};
     
     static const int maxChangeTimes[7] = { 2, 2, 2, 4, 4, 4, 1 };
     
@@ -64,6 +75,6 @@ void BlockGroup::initialize()
             lst.push_back(JJPoint(coordsTable[i][j][0], coordsTable[i][j][1]));
         }
 
-        addBlockToGroup((Block_Type)i, Color_Black, maxChangeTimes[i], lst);
+        addBlockToGroup((Block_Type)i, colorTable[i], maxChangeTimes[i], lst);
     }
 }

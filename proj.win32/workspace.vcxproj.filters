@@ -72,7 +72,7 @@
     <ClInclude Include="..\OperatorLayer.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="BlockGroup.h">
+    <ClInclude Include="..\BlockGroup.h">
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>

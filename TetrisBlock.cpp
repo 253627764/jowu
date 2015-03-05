@@ -1,4 +1,5 @@
 #include "TetrisBlock.h"
+#include "TetrisDef.h"
 
 TetrisBlock::TetrisBlock(Block_Type shape, Color_Type color,
              unsigned int maxChangeTime, const std::vector<JJPoint>& lst)
@@ -34,10 +35,13 @@ TetrisBlock* TetrisBlock::rotate(bool clockWise)
 	return this;
 }
 
-bool TetrisBlock::locate(float x, float y)
+bool TetrisBlock::locate(int x, int y)
 {
 	for (int i = 0; i < m_pieces.size(); ++i) {
-		m_pieces[i]->setDestination(JJPoint(m_pieces[i]->offset().x + x, m_pieces[i]->offset().y + y));
+		m_pieces[i]->setContentSize(Size(0, 0));
+
+		//m_pieces[i]->setContentSize(Size(PIX * (m_pieces[i]->offset().x + x),
+			//PIX * (m_pieces[i]->offset().y + y)));
 	}
 
 	return true;

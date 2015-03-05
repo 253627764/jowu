@@ -9,7 +9,7 @@ Piece::Piece(State_Type state, Color_Type color)
 Piece* Piece::create(Color_Type color, const JJPoint& pos)
 {
 	Piece* ret = new Piece();
-	if (ret && ret->initWithFile(ret->getImageByColor(color))){
+	if (ret && ret->initWithFile("red.png"/*ret->getImageByColor(color)*/)){
 		ret->setState(State_Fill);
 		ret->setColor(color);
 		ret->setOffset(pos.x , pos.y);
@@ -33,7 +33,7 @@ char* Piece::getImageByColor(Color_Type color)
 {
 	switch (color) {
 	case Color_Black:
-		return "black.png";
+		return "darkblue.png";
 	case Color_Red:
 		return "red.png";
 	case Color_Yellow:
@@ -41,7 +41,7 @@ char* Piece::getImageByColor(Color_Type color)
 	case Color_Green:
 		return "green.png";	
 	case Color_Cyan:
-		return "cyan.png";
+		return "brown.png";// color adjust
 	case Color_Blue:
 		return "blue.png";
 	case Color_Purple:
@@ -49,7 +49,7 @@ char* Piece::getImageByColor(Color_Type color)
 	case Color_Pink:
 	    return "pink.png";
 	default:
-		return "black.png";
+		return "darkblue.png";
 	}
 }
 

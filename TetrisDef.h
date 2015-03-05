@@ -2,7 +2,7 @@
 #define TETRIS_DEF_H
 #include <stdarg.h>
 
-
+#define PIX 10
 #define NEXT_BLOCK_COUNT 3
 #define JJ_DISCPY(class) \
 	class(const class&); \

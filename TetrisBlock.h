@@ -6,6 +6,8 @@
 #include <vector>
 #include "Piece.h"
 
+#include "TetrisDef.h"
+
 class TetrisBlock
 {
 	JJ_DISCPY(TetrisBlock)
@@ -25,7 +27,7 @@ public:
 
 	TetrisBlock* rotate(bool clockWise);
 	//sync position with sprite
-	bool locate(float x, float y);
+	bool locate(int x, int y);
 
 private:
 	Block_Type m_shape;

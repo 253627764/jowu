@@ -16,7 +16,7 @@ class GamePanel : public Node
 public:
 	static GamePanel* create();
 	bool init();
-	void updatePiece();
+	void updatePiece(float delat);
 	
 	bool checkPosition(TetrisBlock* block, const JJPoint& pos);
 	bool addBlockToPanel(TetrisBlock* block, const JJPoint &pos);

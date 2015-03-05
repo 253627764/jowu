@@ -3,30 +3,21 @@
 #include "TetrisDef.h"
 #include "TetrisBlock.h"
 #include "GamePanel.h"
+USING_NS_CC;
 
 #define PanelWidth 12
 #define PanelHeight 24
 
-class TetrisLayer : public cocos2d::Layer
+class TetrisLayer : public Layer
 {
 public:
 	virtual bool init();
+	virtual bool onTouchBegan(Touch* touch, Event* event);
+	virtual void update(float delat);
+
+
 	CREATE_FUNC(TetrisLayer);
-	~TetrisLayer();
-
-    bool addBlockToPanel(TetrisBlock *block, const JJPoint &pos);
-    bool down();
-    bool moveLeft();
-    bool moveRight();
-    bool rotate(bool clockWise);
-    bool drop();
-
-	TetrisBlock* block();
-	JJPoint position();
-	unsigned int speed();
-
-	//effect interface to do
-    void eggShell() {}
+	
 private:
 	GamePanel *m_panel;
 
