@@ -36,7 +36,7 @@ TetrisBlock* BlockGroup::getBlock()
         return nullptr;
     }
     
-    int rd = rand() % m_blocks.size();
+	int rd = CCRANDOM_0_1() * (m_blocks.size() - 1);
     return m_blocks[rd];
 }
 

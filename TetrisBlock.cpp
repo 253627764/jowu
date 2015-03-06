@@ -38,10 +38,11 @@ TetrisBlock* TetrisBlock::rotate(bool clockWise)
 bool TetrisBlock::locate(int x, int y)
 {
 	for (int i = 0; i < m_pieces.size(); ++i) {
-		m_pieces[i]->setContentSize(Size(0, 0));
+		CCLog("piece %x x,y: %d , %d", m_pieces[i],  m_pieces[i]->offset().x + x, m_pieces[i]->offset().y + y);
 
-		//m_pieces[i]->setContentSize(Size(PIX * (m_pieces[i]->offset().x + x),
-			//PIX * (m_pieces[i]->offset().y + y)));
+		m_pieces[i]->setPosition(Size(PIX * (m_pieces[i]->offset().x + x + 1),
+			PIX * (m_pieces[i]->offset().y + y + 1)));
+		m_pieces[i]->setScale(0.2);
 	}
 
 	return true;

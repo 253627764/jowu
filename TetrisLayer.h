@@ -17,7 +17,7 @@ public:
 
 
 	CREATE_FUNC(TetrisLayer);
-	
+	void runThisTest();
 private:
 	GamePanel *m_panel;
 

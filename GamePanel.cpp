@@ -3,7 +3,6 @@
 #include "BlockGroup.h"
 
 #define pixel 20
-
 GamePanel* GamePanel::create()
 {
 	GamePanel* ret = new GamePanel();
@@ -78,9 +77,9 @@ bool GamePanel::addBlockToPanel(TetrisBlock* block, const JJPoint &pos)
 		m_pieces[x][y]->setColor(block->color());
 	}
     
-    m_block = m_nextBlocks.front();
-    m_nextBlocks.pop_front();
-    m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
+	m_block = BlockGroup::instance()->getBlock();
+    //m_nextBlocks.pop_front();
+    //m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
     
 	return true;
 }
@@ -247,11 +246,13 @@ void GamePanel::moveByLines(unsigned int form, unsigned int to)
 void GamePanel::getRandomBlock()
 {
     m_block = BlockGroup::instance()->getBlock();
-	m_block->locate(PanelWidth / 2, PanelHeight);
+	
 	int i;
 	for (i = 0; i < m_block->pieces().size(); ++i) {
 		this->addChild(m_block->onePiece(i));
 	}
+
+	m_block->locate(PanelWidth / 2, PanelHeight);
 
 	/*m_nextBlocks.pop_front();
 	m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
