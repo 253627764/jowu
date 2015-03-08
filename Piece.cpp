@@ -29,7 +29,7 @@ void Piece::setOffset(float x, float y)
 	m_offset.y = y;
 }
 
-char* Piece::getImageByColor(Color_Type color)
+std::string Piece::getImageByColor(Color_Type color)
 {
 	switch (color) {
 	case Color_Black:

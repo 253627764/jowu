@@ -63,6 +63,21 @@
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
 		9A8E4BE21AA35F4B007E0901 /* BlockGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E4BE01AA35F4B007E0901 /* BlockGroup.cpp */; };
+		9AA9DDCD1AAC2288002DF108 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDC01AAC2288002DF108 /* blue.png */; };
+		9AA9DDCE1AAC2288002DF108 /* brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDC11AAC2288002DF108 /* brown.png */; };
+		9AA9DDCF1AAC2288002DF108 /* darkblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDC41AAC2288002DF108 /* darkblue.png */; };
+		9AA9DDD01AAC2288002DF108 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDC51AAC2288002DF108 /* fonts */; };
+		9AA9DDD11AAC2288002DF108 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDC61AAC2288002DF108 /* green.png */; };
+		9AA9DDD21AAC2288002DF108 /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDC81AAC2288002DF108 /* orange.png */; };
+		9AA9DDD31AAC2288002DF108 /* pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDC91AAC2288002DF108 /* pink.png */; };
+		9AA9DDD41AAC2288002DF108 /* purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDCA1AAC2288002DF108 /* purple.png */; };
+		9AA9DDD51AAC2288002DF108 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDCB1AAC2288002DF108 /* red.png */; };
+		9AA9DDD61AAC2288002DF108 /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA9DDCC1AAC2288002DF108 /* yellow.png */; };
+		9AA9DDDB1AAC236C002DF108 /* BlockGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E4BE01AA35F4B007E0901 /* BlockGroup.cpp */; };
+		9AA9DDDC1AAC236C002DF108 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3BBCF1A8905E400A59D59 /* Piece.cpp */; };
+		9AA9DDDD1AAC236C002DF108 /* TetrisLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABFC6971A7E21B300F27574 /* TetrisLayer.cpp */; };
+		9AA9DDDE1AAC236C002DF108 /* TetrisScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABFC6991A7E21B300F27574 /* TetrisScene.cpp */; };
+		9AA9DDDF1AAC236C002DF108 /* GamePanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6873401A6BA00E00BC6218 /* GamePanel.cpp */; };
 		9ABB2B461A7CCC7100EA8759 /* GamePanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6873401A6BA00E00BC6218 /* GamePanel.cpp */; };
 		9ABB2B4A1A7CCCE000EA8759 /* TetrisBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD66E1F1A6AC2C600D52E9D /* TetrisBlock.cpp */; };
 		9ABFC69B1A7E21B300F27574 /* TetrisLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABFC6971A7E21B300F27574 /* TetrisLayer.cpp */; };
@@ -271,6 +286,19 @@
 		9A6873411A6BA00E00BC6218 /* GamePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GamePanel.h; path = ../GamePanel.h; sourceTree = "<group>"; };
 		9A8E4BE01AA35F4B007E0901 /* BlockGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlockGroup.cpp; path = ../BlockGroup.cpp; sourceTree = "<group>"; };
 		9A8E4BE11AA35F4B007E0901 /* BlockGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockGroup.h; path = ../BlockGroup.h; sourceTree = "<group>"; };
+		9AA9DDC01AAC2288002DF108 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue.png; path = ../Resources/blue.png; sourceTree = "<group>"; };
+		9AA9DDC11AAC2288002DF108 /* brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brown.png; path = ../Resources/brown.png; sourceTree = "<group>"; };
+		9AA9DDC21AAC2288002DF108 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloseNormal.png; path = ../Resources/CloseNormal.png; sourceTree = "<group>"; };
+		9AA9DDC31AAC2288002DF108 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloseSelected.png; path = ../Resources/CloseSelected.png; sourceTree = "<group>"; };
+		9AA9DDC41AAC2288002DF108 /* darkblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkblue.png; path = ../Resources/darkblue.png; sourceTree = "<group>"; };
+		9AA9DDC51AAC2288002DF108 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = ../Resources/fonts; sourceTree = "<group>"; };
+		9AA9DDC61AAC2288002DF108 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green.png; path = ../Resources/green.png; sourceTree = "<group>"; };
+		9AA9DDC71AAC2288002DF108 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HelloWorld.png; path = ../Resources/HelloWorld.png; sourceTree = "<group>"; };
+		9AA9DDC81AAC2288002DF108 /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orange.png; path = ../Resources/orange.png; sourceTree = "<group>"; };
+		9AA9DDC91AAC2288002DF108 /* pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pink.png; path = ../Resources/pink.png; sourceTree = "<group>"; };
+		9AA9DDCA1AAC2288002DF108 /* purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = purple.png; path = ../Resources/purple.png; sourceTree = "<group>"; };
+		9AA9DDCB1AAC2288002DF108 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red.png; path = ../Resources/red.png; sourceTree = "<group>"; };
+		9AA9DDCC1AAC2288002DF108 /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yellow.png; path = ../Resources/yellow.png; sourceTree = "<group>"; };
 		9ABFC6971A7E21B300F27574 /* TetrisLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TetrisLayer.cpp; path = ../TetrisLayer.cpp; sourceTree = "<group>"; };
 		9ABFC6981A7E21B300F27574 /* TetrisLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TetrisLayer.h; path = ../TetrisLayer.h; sourceTree = "<group>"; };
 		9ABFC6991A7E21B300F27574 /* TetrisScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TetrisScene.cpp; path = ../TetrisScene.cpp; sourceTree = "<group>"; };
@@ -407,6 +435,19 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				9AA9DDC01AAC2288002DF108 /* blue.png */,
+				9AA9DDC11AAC2288002DF108 /* brown.png */,
+				9AA9DDC21AAC2288002DF108 /* CloseNormal.png */,
+				9AA9DDC31AAC2288002DF108 /* CloseSelected.png */,
+				9AA9DDC41AAC2288002DF108 /* darkblue.png */,
+				9AA9DDC51AAC2288002DF108 /* fonts */,
+				9AA9DDC61AAC2288002DF108 /* green.png */,
+				9AA9DDC71AAC2288002DF108 /* HelloWorld.png */,
+				9AA9DDC81AAC2288002DF108 /* orange.png */,
+				9AA9DDC91AAC2288002DF108 /* pink.png */,
+				9AA9DDCA1AAC2288002DF108 /* purple.png */,
+				9AA9DDCB1AAC2288002DF108 /* red.png */,
+				9AA9DDCC1AAC2288002DF108 /* yellow.png */,
 				1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */,
 				15AA9C4015B7EC450033D6C2 /* Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -686,10 +727,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AA9DDCD1AAC2288002DF108 /* blue.png in Resources */,
+				9AA9DDCE1AAC2288002DF108 /* brown.png in Resources */,
 				5087E75317EB910900C73F5D /* CloseNormal.png in Resources */,
-				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				5087E75417EB910900C73F5D /* CloseSelected.png in Resources */,
+				9AA9DDCF1AAC2288002DF108 /* darkblue.png in Resources */,
+				9AA9DDD01AAC2288002DF108 /* fonts in Resources */,
+				9AA9DDD11AAC2288002DF108 /* green.png in Resources */,
 				5087E75517EB910900C73F5D /* HelloWorld.png in Resources */,
+				9AA9DDD21AAC2288002DF108 /* orange.png in Resources */,
+				9AA9DDD31AAC2288002DF108 /* pink.png in Resources */,
+				9AA9DDD41AAC2288002DF108 /* purple.png in Resources */,
+				9AA9DDD51AAC2288002DF108 /* red.png in Resources */,
+				9AA9DDD61AAC2288002DF108 /* yellow.png in Resources */,
+				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,6 +769,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AA9DDDB1AAC236C002DF108 /* BlockGroup.cpp in Sources */,
+				9AA9DDDC1AAC236C002DF108 /* Piece.cpp in Sources */,
+				9AA9DDDD1AAC236C002DF108 /* TetrisLayer.cpp in Sources */,
+				9AA9DDDE1AAC236C002DF108 /* TetrisScene.cpp in Sources */,
+				9AA9DDDF1AAC236C002DF108 /* GamePanel.cpp in Sources */,
 				9ABB2B4A1A7CCCE000EA8759 /* TetrisBlock.cpp in Sources */,
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
 				5087E75817EB910900C73F5D /* HelloWorldScene.cpp in Sources */,

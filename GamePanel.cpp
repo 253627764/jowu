@@ -259,3 +259,15 @@ void GamePanel::getRandomBlock()
 	/* TO DO : next block change*/
 
 }
+
+void GamePanel::tick(float delta)
+{
+    if (m_block) {
+        if (this->down()) {
+            
+        }
+        else {
+            //game over
+        }
+    }
+}

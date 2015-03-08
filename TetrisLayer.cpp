@@ -16,6 +16,7 @@ bool TetrisLayer::init()
 	/*s->setPosition(100 , 100);*/
 	m_panel = GamePanel::create();
 	addChild(m_panel);
+    schedule(schedule_selector(GamePanel::tick), 0.5);
 	return true;
 }
 

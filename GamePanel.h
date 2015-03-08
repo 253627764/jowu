@@ -40,6 +40,8 @@ public:
 	bool moveRight();
 	bool rotate(bool clockWise);
 	bool drop();
+    
+    void tick(float delta);
 
 private:
 	void moveByLines(unsigned int form, unsigned int to);

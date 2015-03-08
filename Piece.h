@@ -30,7 +30,7 @@ public:
 
 private:
 	void setOffset(float x, float y);
-	char* getImageByColor(Color_Type color);
+	std::string getImageByColor(Color_Type color);
 
 protected:
     JJPoint m_offset;//the offset to center postion
