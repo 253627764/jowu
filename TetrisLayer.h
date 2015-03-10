@@ -15,11 +15,11 @@ public:
 	virtual bool onTouchBegan(Touch* touch, Event* event);
 	virtual void update(float delat);
 
-
 	CREATE_FUNC(TetrisLayer);
 	void runThisTest();
+	void tick(float delta);
+
 private:
 	GamePanel *m_panel;
-
 };
 #endif // TETRISLAYER_H

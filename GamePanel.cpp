@@ -64,13 +64,17 @@ bool GamePanel::addBlockToPanel(TetrisBlock* block, const JJPoint &pos)
 	for (i = 0; i < block->pieces().size(); ++i) {
 		int x = block->pieces()[i]->offset().x + pos.x;
 		int y = block->pieces()[i]->offset().y + pos.y;
-		if ((0 > x || PanelWidth < x) || (0 > y || PanelHeight < y)) {
+		//update bitdata
+		m_data[y] |= (1 >> x);
+
+		//checkPosition get true by default
+		/*if ((0 > x || PanelWidth < x) || (0 > y || PanelHeight < y)) {
 			return false;
 		}
 		
 		if (State_Hollow != m_pieces[x][y]->State()) {
 			return false;
-		}
+		}*/
 
 		m_pieces[x][y] = block->onePiece(i);
 		m_pieces[x][y]->setState(State_Fill);
@@ -80,7 +84,7 @@ bool GamePanel::addBlockToPanel(TetrisBlock* block, const JJPoint &pos)
 	m_block = BlockGroup::instance()->getBlock();
     //m_nextBlocks.pop_front();
     //m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
-    
+
 	return true;
 }
 
@@ -127,18 +131,21 @@ unsigned int GamePanel::collapse()
 
         if (killed) {
             // play animation ~
-            m_pieces[w][h]->removeAllChildrenWithCleanup(true);
+			for (w = 0; w < PanelWidth; ++w) {
+                m_pieces[w][h]->removeAllChildrenWithCleanup(true);
+			}
             ++dropLine;
         }
 
 		for (w = 0; w < PanelWidth; ++w) {
+			m_data[h] = m_data[h + dropLine];
 			m_pieces[w][h + dropLine]->setDestinationY(h);
 			m_pieces[w][h] = m_pieces[w][h + dropLine];
-            
 		}
 	}
 
 	for (h = PanelHeight; h > PanelHeight - dropLine; --h) {
+		m_data[h] = 0;
 		for (w = 0; w < PanelWidth; ++w) {
 			m_pieces[w][h] = nullptr;
 		}
@@ -161,9 +168,9 @@ void GamePanel::reset()
 bool GamePanel::down()
 {
 	if (m_block) {
-		if (checkPosition(m_block, JJPoint(m_pos.x, m_pos.y + 1))) {
-			++m_pos.y;
-			m_block->locate(m_pos.x, m_pos.y + 1);
+		if (checkPosition(m_block, JJPoint(m_pos.x, m_pos.y - 1))) {
+			--m_pos.y;
+			m_block->locate(m_pos.x, m_pos.y - 1);
 			return true;
 		}
 	}
@@ -257,7 +264,6 @@ void GamePanel::getRandomBlock()
 	/*m_nextBlocks.pop_front();
 	m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
 	/* TO DO : next block change*/
-
 }
 
 void GamePanel::tick(float delta)

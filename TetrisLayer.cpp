@@ -8,15 +8,9 @@ bool TetrisLayer::init()
 	}
 
 	Sprite* s = Sprite::create("darkBlue.png");
-	//CCLOG("sprite size [%f %f]", s->getContentSize().width, s->getContentSize().height);
-	////s->setContentSize(Size(20, 20));
-	//s->setScale(0.2);
-	//CCLOG("sprite size [%f %f]", s->getContentSize().width, s->getContentSize().height);
-	//addChild(s);
-	/*s->setPosition(100 , 100);*/
 	m_panel = GamePanel::create();
 	addChild(m_panel);
-    schedule(schedule_selector(GamePanel::tick), 0.5);
+    schedule(schedule_selector(TetrisLayer::tick), 0.5);
 	return true;
 }
 
@@ -32,7 +26,14 @@ void TetrisLayer::update(float delat)
 	}
 }
 
+void TetrisLayer::tick(float delta)
+{
+	if (m_panel) {
+		m_panel->down();
+	}
+}
+
 void TetrisLayer::runThisTest()
 {
-		
+
 }

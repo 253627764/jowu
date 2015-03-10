@@ -2,6 +2,8 @@
 #define GAMEPANEL_H
 #include "TetrisDef.h"
 #include "TetrisBlock.h"
+#include "AI/SmartController.h"
+
 #include "cocos2d.h"
 using namespace cocos2d;
 
@@ -56,7 +58,7 @@ private:
     std::list<TetrisBlock*> m_nextBlocks;
 	JJPoint m_pos;
     Piece* m_pieces[PanelWidth][PanelHeight];
-	
+	SmartController* m_controller;
     
 };
 #endif
