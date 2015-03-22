@@ -6,7 +6,7 @@ TetrisBlock::TetrisBlock(Block_Type shape, Color_Type color,
 	: m_shape(shape),
 	m_color(color),
 	m_maxChangeTime(maxChangeTime) {
-    memset(m_bitData, 0, 4);
+    memset(m_bitData, 0, sizeof(int));
     for (int i = 0; i < lst.size(); ++i) {
         m_bitData[lst[i].x + 2] |=  1 << (lst[i].y + 2);
 		Piece* piece = Piece::create(color, lst[i]);
@@ -40,10 +40,28 @@ bool TetrisBlock::locate(int x, int y)
 	for (int i = 0; i < m_pieces.size(); ++i) {
 		CCLog("piece %x x,y: %d , %d", m_pieces[i],  m_pieces[i]->offset().x + x, m_pieces[i]->offset().y + y);
 
-		m_pieces[i]->setPosition(Size(PIX * (m_pieces[i]->offset().x + x + 1),
-			PIX * (m_pieces[i]->offset().y + y + 1)));
+		m_pieces[i]->setPosition(PIX * (m_pieces[i]->offset().x + x),
+			PIX * (m_pieces[i]->offset().y + y));
 		m_pieces[i]->setScale(0.2);
 	}
 
 	return true;
 }
+
+
+
+void Block::rotate(bool clockwise)
+{
+	for (int i = 0; i < 4; ++i) {
+		if (m_pieces[i]) {
+			m_pieces[i]->setPosition(m_pieces[i]->getPosition().y, (clockwise ? 1 : -1) * m_pieces[i]->getPosition().x);
+		}
+	}
+}
+
+Block* Block::create(Block_Type type, int maxChangeTime)
+{
+	m_type = type;
+	m_maxChangeTime = maxChangeTime;
+}
+		

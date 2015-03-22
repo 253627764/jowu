@@ -10,7 +10,7 @@ Piece* Piece::create(Color_Type color, const JJPoint& pos)
 {
 	Piece* ret = new Piece();
  	if (ret && ret->initWithFile(ret->getImageByColor(color))){
-		ret->setState(State_Fill);
+		ret->setState(State_Hollow);
 		ret->setColor(color);
 		ret->setOffset(pos.x , pos.y);
 		ret->autorelease();

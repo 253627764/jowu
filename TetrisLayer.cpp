@@ -7,10 +7,9 @@ bool TetrisLayer::init()
 		return false; 
 	}
 
-	Sprite* s = Sprite::create("darkBlue.png");
 	m_panel = GamePanel::create();
 	addChild(m_panel);
-    schedule(schedule_selector(TetrisLayer::tick), 0.5);
+    schedule(schedule_selector(TetrisLayer::tick), 0.1);
 	return true;
 }
 

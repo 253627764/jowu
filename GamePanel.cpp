@@ -17,7 +17,16 @@ GamePanel* GamePanel::create()
 
 bool GamePanel::init()
 {
+	memset(m_data, 0, sizeof(m_data));
 	memset(m_pieces, 0, sizeof(Piece*) * PanelWidth * PanelHeight);
+	for (int i = 0; i < PanelWidth; ++i) {
+		for (int j = 0; j < PanelHeight; ++j) {
+			m_pieces[i][j] = Piece::create(Color_Pink, JJPoint(i, j));
+			m_pieces[i][j]->setPosition(i * pixel, j * pixel);
+		    //m_pieces[i][j]->setScale(0.2);
+			this->addChild(m_pieces[i][j]);
+		}
+	}
 	getRandomBlock();
 
 	//m_nextBlocks.pop_front();
@@ -76,12 +85,12 @@ bool GamePanel::addBlockToPanel(TetrisBlock* block, const JJPoint &pos)
 			return false;
 		}*/
 
-		m_pieces[x][y] = block->onePiece(i);
+		//m_pieces[x][y] = block->onePiece(i);
 		m_pieces[x][y]->setState(State_Fill);
-		m_pieces[x][y]->setColor(block->color());
+		m_pieces[x][y]->setTexture(CCTextureCache::sharedTextureCache()->addImage("red.png"));
 	}
     
-	m_block = BlockGroup::instance()->getBlock();
+	getRandomBlock();
     //m_nextBlocks.pop_front();
     //m_nextBlocks.push_back(BlockGroup::instance()->getBlock());
 
@@ -175,7 +184,7 @@ bool GamePanel::down()
 		}
 	}
 
-	return false;
+	return addBlockToPanel(m_block, JJPoint(m_pos.x, m_pos.y));
 }
 
 bool GamePanel::moveLeft()
@@ -260,6 +269,8 @@ void GamePanel::getRandomBlock()
 	}
 
 	m_block->locate(PanelWidth / 2, PanelHeight);
+	m_pos.x = PanelWidth / 2;
+	m_pos.y = PanelHeight - 1;
 
 	/*m_nextBlocks.pop_front();
 	m_nextBlocks.push_back(BlockGroup::instance()->getBlock());

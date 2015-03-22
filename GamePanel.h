@@ -53,12 +53,12 @@ private:
 	unsigned int m_width;
 	unsigned int m_height;
 	unsigned int m_speed; // not handle yet
-    std::vector<unsigned int> m_data;
+	int m_data[PanelHeight];
 	TetrisBlock* m_block;
     std::list<TetrisBlock*> m_nextBlocks;
 	JJPoint m_pos;
     Piece* m_pieces[PanelWidth][PanelHeight];
-	SmartController* m_controller;
+	//SmartController* m_controller;
     
 };
 #endif

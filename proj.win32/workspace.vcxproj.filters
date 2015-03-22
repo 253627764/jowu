@@ -10,9 +10,6 @@
     <Filter Include="resource">
       <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\AI">
-      <UniqueIdentifier>{2ff2a5a0-c236-4eb3-b51c-613c79987735}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -43,9 +40,6 @@
       <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="..\BlockGroup.cpp" />
-    <ClCompile Include="..\AI\SmartController.cpp">
-      <Filter>Classes\AI</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -80,9 +74,6 @@
     </ClInclude>
     <ClInclude Include="..\BlockGroup.h">
       <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\AI\SmartController.h">
-      <Filter>Classes\AI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ TetrisBlock* BlockGroup::getBlock()
 void BlockGroup::initialize()
 {
     static const int coordsTable[7][4][2] = {
-        { { 0, -1 },  { 0, 0 },   { 0, 1 },   { 0, 2 } },//stick
+        { { 0, -1 },  { 0, 0 },   { 0, 1 },   { 0, -2 } },//stick
         { { 0, -1 },  { 0, 0 },   { -1, 0 },  { -1, 1 } },//Z
         { { 0, -1 },  { 0, 0 },   { 1, 0 },   { 1, 1 } },//S
         { { 1, -1 },  { 0, -1 },  { 0, 0 },   { 0, 1 } },//L

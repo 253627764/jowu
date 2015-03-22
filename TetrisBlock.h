@@ -8,7 +8,92 @@
 
 #include "TetrisDef.h"
 
-class TetrisBlock
+NS_USING_CC;
+
+
+class Block : public Sprite
+{
+public:
+	static Block* create();
+
+	Block_Type type() const { return m_type; }
+	int maxChangeTime() const { return m_maxChangeTime; }
+	virtual void rotate();
+	
+private:
+	Block_Type m_type;
+	int m_maxChangeTime;
+	Piece m_pieces[4];
+};
+
+class BlockStick : public Block
+{
+public:
+	BlockStick* create();
+};
+
+
+enum Block_Type
+{
+	Block_Stick = 0,
+	Block_Z,
+	Block_S,
+	Block_L,
+	Block_MirrorL,
+	Block_Hill,
+	Block_Square,
+	Block_Invalid,
+	Block_Num = Block_Invalid
+};
+
+class BlockZ : public Block
+{
+public:
+	BlockZ* create();
+};
+
+
+class BlockS : public Block
+{
+public:
+	BlockS* create();
+};
+
+
+class BlockL : public Block
+{
+public:
+	BlockL* create();
+};
+
+
+class BlockMirrorL : public Block
+{
+public:
+	BlockMirrorL* create();
+};
+
+
+class BlockHill : public Block
+{
+public:
+	BlockHill* create();
+};
+
+class BlockSquare : public Block
+{
+public:
+	BlockSquare* create();
+};
+
+
+
+	
+
+
+
+/*
+class TetrisBlock : public Sprite
 {
 	JJ_DISCPY(TetrisBlock)
     friend class BlockGroup;
@@ -35,5 +120,5 @@ private:
 	unsigned int m_maxChangeTime;
     std::vector<Piece*> m_pieces;
     int m_bitData[4];
-};
+};*/
 #endif //JOWU_TETRIS_BLOCK

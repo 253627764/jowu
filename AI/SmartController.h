@@ -1,9 +1,9 @@
 #include "GamePanel.h"
 #include <map>
-
+#if 0
 USING_NS_CC;
 
-class Guide : public Ref
+class Guide// : public Ref
 {
 public:
 	Guide();
@@ -13,7 +13,7 @@ private:
 	std::map<int, JJPoint> m_actionLst;
 };
 
-class SmartController : public Ref
+class SmartController// : public Ref
 {
 	enum SC_Type {
 		SC_DEFENSE = 0,
@@ -32,3 +32,4 @@ public:
 private:
 	void evalute(TetrisBlock* block, JJPoint pos);
 };
+#endif
