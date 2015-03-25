@@ -10,85 +10,66 @@
 
 NS_USING_CC;
 
-
 class Block : public Sprite
 {
 public:
-	static Block* create();
+	Block(Block_Type type, int times);
 
 	Block_Type type() const { return m_type; }
 	int maxChangeTime() const { return m_maxChangeTime; }
-	virtual void rotate();
-	
+	virtual bool rotate(bool);
+
+	void setPosition();
+
 private:
 	Block_Type m_type;
 	int m_maxChangeTime;
-	Piece m_pieces[4];
+	std::vector<Piece*> m_pieces;
 };
 
 class BlockStick : public Block
 {
 public:
-	BlockStick* create();
-};
-
-
-enum Block_Type
-{
-	Block_Stick = 0,
-	Block_Z,
-	Block_S,
-	Block_L,
-	Block_MirrorL,
-	Block_Hill,
-	Block_Square,
-	Block_Invalid,
-	Block_Num = Block_Invalid
+	BlockStick();
 };
 
 class BlockZ : public Block
 {
 public:
-	BlockZ* create();
+	BlockZ();
 };
 
 
 class BlockS : public Block
 {
 public:
-	BlockS* create();
+	BlockS();
 };
-
 
 class BlockL : public Block
 {
 public:
-	BlockL* create();
+	BlockL();
 };
-
 
 class BlockMirrorL : public Block
 {
 public:
-	BlockMirrorL* create();
-};
-
+	BlockMirrorL();
+}
 
 class BlockHill : public Block
 {
 public:
-	BlockHill* create();
+	BlockHill();
 };
 
 class BlockSquare : public Block
 {
 public:
-	BlockSquare* create();
+	BlockSquare();
 };
 
-
-
-	
 
 
 

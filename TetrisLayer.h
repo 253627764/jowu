@@ -8,6 +8,7 @@ USING_NS_CC;
 #define PanelWidth 12
 #define PanelHeight 24
 
+
 class TetrisLayer : public Layer
 {
 public:
@@ -18,6 +19,8 @@ public:
 	CREATE_FUNC(TetrisLayer);
 	void runThisTest();
 	void tick(float delta);
+
+	static void loadResource(const std::string& path);
 
 private:
 	GamePanel *m_panel;
