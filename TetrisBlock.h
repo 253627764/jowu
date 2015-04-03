@@ -8,23 +8,29 @@
 
 #include "TetrisDef.h"
 
-NS_USING_CC;
+USING_NS_CC;
 
 class Block : public Sprite
 {
 public:
-	Block(Block_Type type, int times);
-
+	Block(Block_Type type);
+	virtual ~Block();
 	Block_Type type() const { return m_type; }
 	int maxChangeTime() const { return m_maxChangeTime; }
-	virtual bool rotate(bool);
+	std::vector<Piece*> pieces() const { return m_pieces; }
+	void removeAllPiece();
 
-	void setPosition();
+	virtual bool rotate(bool, const JJPoint&);
+	void setPosition(float x, float y);
+	void update(float delta);
 
 private:
 	Block_Type m_type;
 	int m_maxChangeTime;
+
+protected:
 	std::vector<Piece*> m_pieces;
+	
 };
 
 class BlockStick : public Block
@@ -56,7 +62,7 @@ class BlockMirrorL : public Block
 {
 public:
 	BlockMirrorL();
-}
+};
 
 class BlockHill : public Block
 {
@@ -70,36 +76,4 @@ public:
 	BlockSquare();
 };
 
-
-
-
-/*
-class TetrisBlock : public Sprite
-{
-	JJ_DISCPY(TetrisBlock)
-    friend class BlockGroup;
-public:
-    TetrisBlock(Block_Type shape, Color_Type color, unsigned int maxChangeTime, const std::vector<JJPoint>& lst);
-	
-	int* bitData();
-
-	Block_Type type() const { return m_shape; }
-	Color_Type color() const { return m_color; }
-	unsigned int maxChangeTime() const { return m_maxChangeTime; }
-
-    std::vector<Piece*> pieces() const { return m_pieces; }
-	Piece* onePiece(unsigned int index) const { return m_pieces[index]; }
-	virtual unsigned int wieght() const { return 0; }
-
-	TetrisBlock* rotate(bool clockWise);
-	//sync position with sprite
-	bool locate(int x, int y);
-
-private:
-	Block_Type m_shape;
-	Color_Type m_color;
-	unsigned int m_maxChangeTime;
-    std::vector<Piece*> m_pieces;
-    int m_bitData[4];
-};*/
 #endif //JOWU_TETRIS_BLOCK

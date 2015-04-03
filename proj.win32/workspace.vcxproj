@@ -133,11 +133,11 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\BlockGroup.cpp" />
+    <ClCompile Include="..\BlockFactory.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\OperateLayer.cpp" />
     <ClCompile Include="..\GamePanel.cpp" />
-    <ClCompile Include="..\OperatorLayer.cpp" />
     <ClCompile Include="..\Piece.cpp" />
     <ClCompile Include="..\TetrisBlock.cpp" />
     <ClCompile Include="..\TetrisLayer.cpp" />
@@ -145,11 +145,11 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\BlockGroup.h" />
+    <ClInclude Include="..\BlockFactory.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\OperateLayer.h" />
     <ClInclude Include="..\GamePanel.h" />
-    <ClInclude Include="..\OperatorLayer.h" />
     <ClInclude Include="..\Piece.h" />
     <ClInclude Include="..\TetrisBlock.h" />
     <ClInclude Include="..\TetrisDef.h" />

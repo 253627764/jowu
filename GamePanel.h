@@ -16,12 +16,13 @@ static const int NextNum = 3;
 class GamePanel : public Node
 {
 public:
+	GamePanel();
 	static GamePanel* create();
 	bool init();
 	void updatePiece(float delat);
 	
-	bool checkPosition(TetrisBlock* block, const JJPoint& pos);
-	bool addBlockToPanel(TetrisBlock* block, const JJPoint &pos);
+	bool checkPosition(Block* block, const JJPoint& pos);
+	bool addBlockToPanel(Block* block, const JJPoint &pos);
 	
 	std::vector<int> eliminateLines();
 	unsigned int collapse();
@@ -29,11 +30,11 @@ public:
 	unsigned int speed() const { return m_speed; }
 	void setSpeed(unsigned int speed) { m_speed = speed; }
 
-	TetrisBlock* block() const { return m_block; }
-	void setBlock(TetrisBlock* block) { m_block = block; }
+	Block* block() const { return m_block; }
+	void setBlock(Block* block) { m_block = block; }
 
 	JJPoint position() const { return m_pos; }
-	void setPosition(const JJPoint& pos) { m_pos = pos; }
+	
 	unsigned int currentHeight() const;
     bool elevate(unsigned int lines);
     void reset();
@@ -43,22 +44,27 @@ public:
 	bool rotate(bool clockWise);
 	bool drop();
     
+	void reStart();
     void tick(float delta);
+	void update(float delta);
+
+	std::function<void(void)> gameOverCallback;
 
 private:
 	void moveByLines(unsigned int form, unsigned int to);
     void getRandomBlock();
-
+	void debug();
 private:
+	Vec2 m_origin;
 	unsigned int m_width;
 	unsigned int m_height;
 	unsigned int m_speed; // not handle yet
 	int m_data[PanelHeight];
-	TetrisBlock* m_block;
-    std::list<TetrisBlock*> m_nextBlocks;
+	Block* m_block;
+    std::list<Block*> m_nextBlocks;
 	JJPoint m_pos;
     Piece* m_pieces[PanelWidth][PanelHeight];
+	bool gameOver;
 	//SmartController* m_controller;
-    
 };
 #endif

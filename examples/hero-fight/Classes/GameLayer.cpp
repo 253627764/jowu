@@ -104,10 +104,10 @@ bool GameLayer::init()
 			this->addEnemy();
 		}
 
-		CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(PATH_BG_MUSIC, true);
-		CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(PATH_HERO_TALK_EFFECT);
+        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(PATH_BG_MUSIC, true);
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(PATH_HERO_TALK_EFFECT);
 
-		this->scheduleUpdate();
+        this->scheduleUpdate();
 
 		ret = true;
 	} while(0);
@@ -188,7 +188,7 @@ void GameLayer::onHeroDead(BaseSprite *pTarget)
 	{
 		pTarget->removeSprite();
 		SceneManager::getInstance()->showScene(GAME_OVER_SCENE);
-	}
+    }
 }
 
 void GameLayer::update(float dt)

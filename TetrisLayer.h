@@ -8,20 +8,19 @@ USING_NS_CC;
 #define PanelWidth 12
 #define PanelHeight 24
 
-
 class TetrisLayer : public Layer
 {
 public:
 	virtual bool init();
-	virtual bool onTouchBegan(Touch* touch, Event* event);
-	virtual void update(float delat);
-
+	virtual void update(float delta);
+	
 	CREATE_FUNC(TetrisLayer);
 	void runThisTest();
 	void tick(float delta);
 
-	static void loadResource(const std::string& path);
-
+	static void loadResource();
+	void gameOver();
+	GamePanel* getPanel() const { return m_panel; }
 private:
 	GamePanel *m_panel;
 };

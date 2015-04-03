@@ -7,15 +7,14 @@ bool TetrisLayer::init()
 		return false; 
 	}
 
+	loadResource();
 	m_panel = GamePanel::create();
+	m_panel->gameOverCallback = CC_CALLBACK_0(TetrisLayer::gameOver, this);
+	Vec2 v = Director::getInstance()->getVisibleOrigin();
+	m_panel->setPosition(110, 110);
 	addChild(m_panel);
-    schedule(schedule_selector(TetrisLayer::tick), 0.1);
+	schedule(schedule_selector(TetrisLayer::tick), 3);
 	return true;
-}
-
-bool TetrisLayer::onTouchBegan(Touch* touch, Event* event)
-{
-	return false;
 }
 
 void TetrisLayer::update(float delat)
@@ -37,7 +36,7 @@ void TetrisLayer::runThisTest()
 
 }
 
-void loadResource(const std::string& path)
+void TetrisLayer::loadResource()
 {
 	//for plist res
 	//SpriteFrameCache::getInstance()->addSpriteFrame(
@@ -51,4 +50,9 @@ void loadResource(const std::string& path)
 	Director::getInstance()->getTextureCache()->addImage("blue.png");
 	Director::getInstance()->getTextureCache()->addImage("purple.png");
 	Director::getInstance()->getTextureCache()->addImage("pink.png");
+}
+
+void TetrisLayer::gameOver()
+{
+	unschedule(schedule_selector(TetrisLayer::tick));
 }

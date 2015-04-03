@@ -8,6 +8,14 @@
 	class(const class&); \
 	class& operator=(const class&);
 
+#define RAND_BLOCK_COLOR (Color_Type)(Color_Black + rand() % 7)
+#define RAND_BLOCK_TYPE  (Block_Type)(Block_Stick + rand() % 7);
+    //struct timeval now; \
+    //gettimeofday(&now, NULL); \
+    //srand((unsigned)(now.tv_sec*1000 + now.tv_usec/1000)); \
+	
+
+
 //from CC_PROPERTY
 //#define JJ_PROPERTY(varType, varName, funName)\
 //private: varType varName;\
@@ -16,15 +24,15 @@
 
 enum Color_Type
 {
-	Color_Black  = 0x00000000,
-	Color_Red    = 0x00FF0000,
-	Color_Orange = 0x00FFA500,//255,165,0
-	Color_Yellow = 0x00FFFF00,
-	Color_Green  = 0x00008000,//0,128,0
-	Color_Cyan   = 0x0000FFFF,
-	Color_Blue   = 0x000000FF,
-	Color_Purple = 0x00800080,//128,0,128
-	Color_Pink   = 0x00FFC0CB,//255,192,203
+	Color_Black, //  = 0x00000000,
+	Color_Red, //    = 0x00FF0000,
+	Color_Orange, // = 0x00FFA500,//255,165,0
+	Color_Yellow, // = 0x00FFFF00,
+	Color_Green, //  = 0x00008000,//0,128,0
+	Color_Cyan, //   = 0x0000FFFF,
+	Color_Blue, //   = 0x000000FF,
+	Color_Purple, // = 0x00800080,//128,0,128
+	Color_Pink, //   = 0x00FFC0CB,//255,192,203
     Color_Num,
 	Color_Invalid = Color_Num
 };
