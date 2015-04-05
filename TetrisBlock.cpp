@@ -42,6 +42,10 @@ Block::~Block()
 
 bool Block::rotate(bool clockwise, const JJPoint& stub)
 {
+	
+	for (int i = 0; i < 4; ++i) {
+	m_hash |=  (1 << (3 + m_pieces[i]->offset().x)) << (4 * (1 - m_pieces[i]->offset().y));
+	}
 	for (int i = 0; i < 4; ++i) {
 		m_pieces[i]->setOffset((clockwise ? 1 : -1) * m_pieces[i]->offset().y, 
 		(clockwise ? -1 : 1) * m_pieces[i]->offset().x);
@@ -67,9 +71,12 @@ void Block::setPosition(float x, float y)
 }
 
 Block::Block(Block_Type type)
+	:
+	m_type(type),
+	m_maxChangeTime(MaxChangeTimes[type]), 
+	m_hash(0)
 {
-	m_type = type;
-	m_maxChangeTime = MaxChangeTimes[type];
+	
 }
 
 void Block::update(float delat)

@@ -30,6 +30,7 @@ private:
 
 protected:
 	std::vector<Piece*> m_pieces;
+	int m_hash;
 	
 };
 

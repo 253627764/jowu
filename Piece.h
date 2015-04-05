@@ -5,8 +5,6 @@
 #include "TetrisDef.h"
 #include "cocos2d.h"
 
-
-
 using namespace cocos2d;
 class Piece : public Sprite
 {
@@ -26,7 +24,6 @@ public:
     State_Type State() const { return m_state; }
     Color_Type Color() const { return m_color; }
 
-	
 	void setDestinationX(const float x) { m_destination.x = x; }
 	void setDestinationY(const float y) { m_destination.y = y; }
 	void setDestination(const JJPoint& pos) { m_destination = pos; }
