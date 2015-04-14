@@ -22,6 +22,7 @@ public:
 	void gameOver();
 	GamePanel* getPanel() const { return m_panel; }
 private:
+	CCSprite* jj;
 	GamePanel *m_panel;
 };
 #endif // TETRISLAYER_H

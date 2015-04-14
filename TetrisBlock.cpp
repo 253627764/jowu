@@ -25,7 +25,7 @@ static const int MaxChangeTimes[7] = { 2, 2, 2, 4, 4, 4, 1 };
 
 #define CREATE_BLOCK(name) \
 	Block##name::Block##name() \
-    : Block(Block_##name) \
+    : Block(Block_##name, ColorTable[Block_##name]) \
 { \
 	int i = 0; \
 	for (; i < 4; ++i) { \
@@ -37,14 +37,12 @@ static const int MaxChangeTimes[7] = { 2, 2, 2, 4, 4, 4, 1 };
 
 Block::~Block() 
 {
-	int a = 1;
 }
 
 bool Block::rotate(bool clockwise, const JJPoint& stub)
 {
-	
 	for (int i = 0; i < 4; ++i) {
-	m_hash |=  (1 << (3 + m_pieces[i]->offset().x)) << (4 * (1 - m_pieces[i]->offset().y));
+		m_hash |=  (1 << (2 - m_pieces[i]->offset().x)) << (4 * (1 - m_pieces[i]->offset().y));
 	}
 	for (int i = 0; i < 4; ++i) {
 		m_pieces[i]->setOffset((clockwise ? 1 : -1) * m_pieces[i]->offset().y, 
@@ -70,9 +68,10 @@ void Block::setPosition(float x, float y)
 	}
 }
 
-Block::Block(Block_Type type)
+Block::Block(Block_Type type, Color_Type color)
 	:
 	m_type(type),
+	m_color(color),
 	m_maxChangeTime(MaxChangeTimes[type]), 
 	m_hash(0)
 {

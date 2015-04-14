@@ -13,9 +13,10 @@ USING_NS_CC;
 class Block : public Sprite
 {
 public:
-	Block(Block_Type type);
+	Block(Block_Type type, Color_Type color);
 	virtual ~Block();
 	Block_Type type() const { return m_type; }
+	Color_Type color() const { return m_color; }
 	int maxChangeTime() const { return m_maxChangeTime; }
 	std::vector<Piece*> pieces() const { return m_pieces; }
 	void removeAllPiece();
@@ -26,6 +27,7 @@ public:
 
 private:
 	Block_Type m_type;
+	Color_Type m_color;
 	int m_maxChangeTime;
 
 protected:

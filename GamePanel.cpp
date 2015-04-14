@@ -10,6 +10,7 @@ GamePanel::GamePanel()
 	: m_block(nullptr), gameOver(false)
 {
 	memset(m_data, 0, sizeof(m_data));
+	memset(m_state, 0, sizeof(int) * PanelWidth * PanelHeight);
 	memset(m_pieces, 0, sizeof(Piece*) * PanelWidth * PanelHeight);
 }
 
@@ -20,7 +21,18 @@ GamePanel* GamePanel::create()
 		ret->autorelease();
 		return ret;
 	}
-
+		struct Point {
+    int x;
+    int y;
+};
+    Point p;
+    p.x = 0;
+    p.y = 2;
+    Point* p1 = &p;
+    Point* p2 = &p;
+    p1 = NULL;
+   // delete p1;
+    CCLOG("p2 x, y [%d %d]\n", p2->x, p2->y) ;
 	CC_SAFE_DELETE(ret);
 	return ret;
 }
@@ -30,12 +42,16 @@ bool GamePanel::init()
 	m_origin = Director::getInstance()->getVisibleOrigin();
 	for (int i = 0; i < PanelWidth; ++i) {
 		for (int j = 0; j < PanelHeight; ++j) {
+#if 0
 			m_pieces[i][j] = Piece::create();
 			if (!m_pieces[i][j]) return false;
 			m_pieces[i][j]->setPosition(m_origin.x + i * pixel, m_origin.y + j * pixel);
 			this->addChild(m_pieces[i][j]);
+#endif
+			m_pieces[i][j] = nullptr;
 		}
 	}
+
 	getRandomBlock();
 	this->scheduleUpdate();
 
@@ -62,7 +78,12 @@ bool GamePanel::checkPosition(Block* block, const JJPoint& pos)
 			return false;
 		}
 		
+#if 0
 		if (State_Hollow != m_pieces[_x][_y]->State()) {
+			return false;
+		}
+#endif
+		if (m_pieces[_x][_y]) {
 			return false;
 		}
 	}
@@ -80,14 +101,19 @@ bool GamePanel::addBlockToPanel(Block* block, const JJPoint &pos)
 	}
 
 	int i;
+	//bool collapse = false;
 	for (i = 0; i < block->pieces().size(); ++i) {
 		int x = block->pieces()[i]->offset().x + pos.x;
 		int y = block->pieces()[i]->offset().y + pos.y;
 		//update bitdata
 		m_data[y] |= (1 >> x);
-
+		
+		m_pieces[x][y] = Piece::create();
+		m_pieces[x][y]->setPosition(PIX * x, PIX * y);
 		m_pieces[x][y]->setState(State_Fill);
-		m_pieces[x][y]->setTexture(CCTextureCache::sharedTextureCache()->getTextureForKey("red.png"));
+		m_pieces[x][y]->setTexture(block->pieces()[i]->getTexture());
+		//m_pieces[x][y]->setTexture(CCTextureCache::sharedTextureCache()->getTextureForKey("red.png"));
+		addChild(m_pieces[x][y]);
 	}
     
 	getRandomBlock();
@@ -109,7 +135,7 @@ std::vector<int> GamePanel::eliminateLines()
 	for (h = PanelHeight - 1; h >= 0; --h) {
         bool clear = true;
         for (w = 0;w < PanelWidth; w++) {
-            if (State_Fill != m_pieces[w][h]->State()) {
+			if (!m_pieces[w][h]) {
                 clear = false;
                 break;
             }
@@ -130,14 +156,13 @@ bool GamePanel::elevate(unsigned int lines)
 
 unsigned int GamePanel::collapse()
 {
-	debug();
     int dropLine = 0;
 	int w, h;
 	for (h = 0; h < PanelHeight; ++h) {
 		//checkout if the line of the height be kill
 		bool killed = true;
 		for (w = 0; w < PanelWidth; ++w) {
-			if (State_Fill != m_pieces[w][h]->State()) {
+			if (!m_pieces[w][h]) {
 				killed = false;
 				break;
 			}
@@ -146,33 +171,29 @@ unsigned int GamePanel::collapse()
         if (killed) {
             // play animation ~
 			for (w = 0; w < PanelWidth; ++w) {
-                m_pieces[w][h]->removeAllChildrenWithCleanup(true);
+                m_pieces[w][h]->removeFromParentAndCleanup(true);
+				m_pieces[w][h] = nullptr;
 			}
             ++dropLine;
+			continue;
         }
 
 		if (0 == dropLine) continue;
-		if (h+dropLine >= 24) continue;
+		if (h+dropLine >= 24) break;
 
 		for (w = 0; w < PanelWidth; ++w) {
-			//m_data[h] = m_data[h + dropLine];
-			//m_pieces[w][h + dropLine]->setPositionY(m_pieces[w][h]->getPositionY());
-			m_pieces[w][h] = m_pieces[w][h + dropLine];
+			if (!m_pieces[w][h]) {
+				m_pieces[w][h - dropLine] = nullptr;
+
+				continue;
+			}
+
 			m_pieces[w][h]->setPositionY(m_pieces[w][h]->getPositionY() - dropLine * PIX);
+			m_pieces[w][h - dropLine] = m_pieces[w][h];
 		}
+
 	}
 
-	for (h = PanelHeight - 1; h > PanelHeight - dropLine - 1; --h) {
-		m_data[h] = 0;
-		for (w = 0; w < PanelWidth; ++w) {
-			m_pieces[w][h] = Piece::create();
-			m_pieces[w][h]->setPosition(w * PIX, h * PIX);
-			addChild(m_pieces[w][h]);
-
-		}
-	}
-
-	debug();
 	return dropLine;
 }
 
@@ -184,7 +205,7 @@ void GamePanel::debug()
 		for (int w = 0; w < 12; ++w)
 		 {
 			
-			str += (m_pieces[w][h]->State() == State_Fill) ? "1" : "0";
+			str += (m_pieces[w][h] != nullptr) ? "1" : "0";
 		}
 		CCLOG("%s", str.c_str());
 
@@ -194,10 +215,12 @@ void GamePanel::debug()
 void GamePanel::reset()
 {
 	int i, j;
-	for (i = 0; i < PanelHeight; ++i) {
-		for (j = 0; j < PanelWidth; ++j) {
-			m_pieces[i][j]->removeFromParentAndCleanup(false);
-			m_pieces[i][j] = nullptr;
+	for (i = 0; i < PanelWidth; ++i) {
+		for (j = 0; j < PanelHeight; ++j) {
+			if (m_pieces[i][j]) {
+				m_pieces[i][j]->removeFromParentAndCleanup(false);
+				m_pieces[i][j] = nullptr;
+			}
 		}
 	}
 }
@@ -209,7 +232,9 @@ void GamePanel::update(float delta)
 
 		for(int w = 0; w < PanelWidth; ++w) {
 			for (int h = 0; h < PanelHeight; ++h) {
-				m_pieces[w][h]->update(delta);
+				if (m_pieces[w][h]) {
+					m_pieces[w][h]->update(delta);
+				}
 			}
 		}
 

@@ -1,5 +1,6 @@
 #include "TetrisLayer.h"
 #include "Piece.h"
+#include "Audio.h"
 
 bool TetrisLayer::init()
 {
@@ -7,6 +8,7 @@ bool TetrisLayer::init()
 		return false; 
 	}
 
+	Audio::instance()->playMusic("music.ogg");
 	loadResource();
 	m_panel = GamePanel::create();
 	m_panel->gameOverCallback = CC_CALLBACK_0(TetrisLayer::gameOver, this);
@@ -14,6 +16,7 @@ bool TetrisLayer::init()
 	m_panel->setPosition(110, 110);
 	addChild(m_panel);
 	schedule(schedule_selector(TetrisLayer::tick), 3);
+
 	return true;
 }
 

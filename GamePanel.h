@@ -53,6 +53,7 @@ public:
 private:
 	void moveByLines(unsigned int form, unsigned int to);
     void getRandomBlock();
+	void adjustPieces();
 	void debug();
 private:
 	Vec2 m_origin;
@@ -63,6 +64,7 @@ private:
 	Block* m_block;
     std::list<Block*> m_nextBlocks;
 	JJPoint m_pos;
+	int m_state[PanelWidth][PanelHeight];
     Piece* m_pieces[PanelWidth][PanelHeight];
 	bool gameOver;
 	//SmartController* m_controller;

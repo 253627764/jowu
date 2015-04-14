@@ -68,3 +68,8 @@ void OperateLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 
 	}
 }
+
+bool OperateLayer::onTouchBegan(Touch *touch, Event *unused_event)
+{
+	return false;
+}

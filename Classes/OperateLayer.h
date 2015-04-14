@@ -11,7 +11,7 @@ public:
 	virtual bool init();
 	void setPanel(GamePanel* panel) { m_panel = panel; }
 	//enable touch for further use
-	//virtual bool onTouchBegan(Touch *touch, Event *unused_event); 
+	virtual bool onTouchBegan(Touch *touch, Event *unused_event); 
  //   virtual void onTouchMoved(Touch *touch, Event *unused_event); 
  //   virtual void onTouchEnded(Touch *touch, Event *unused_event); 
  //   virtual void onTouchCancelled(Touch *touch, Event *unused_event);
