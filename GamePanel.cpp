@@ -106,8 +106,8 @@ bool GamePanel::addBlockToPanel(Block* block, const JJPoint &pos)
 		int x = block->pieces()[i]->offset().x + pos.x;
 		int y = block->pieces()[i]->offset().y + pos.y;
 		//update bitdata
-		m_data[y] |= (1 >> x);
-		
+		m_data[y] |= (1 << x);
+		 
 		m_pieces[x][y] = Piece::create();
 		m_pieces[x][y]->setPosition(PIX * x, PIX * y);
 		m_pieces[x][y]->setState(State_Fill);
@@ -215,7 +215,9 @@ void GamePanel::debug()
 void GamePanel::reset()
 {
 	int i, j;
+	
 	for (i = 0; i < PanelWidth; ++i) {
+		m_data[i] = 0;
 		for (j = 0; j < PanelHeight; ++j) {
 			if (m_pieces[i][j]) {
 				m_pieces[i][j]->removeFromParentAndCleanup(false);

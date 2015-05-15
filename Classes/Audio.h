@@ -7,15 +7,13 @@ class Audio
 public:
 	static Audio* instance();
 	bool playMusic(const std::string &);
-	bool playEffect(const std:;string &);
+	bool playEffect(const std::string &);
 
 private:
 	Audio() {}
-	bool checkPath();
 
 private:
 	static Audio* s_instance;
-}
-	
+};
 
 #endif

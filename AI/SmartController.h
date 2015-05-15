@@ -13,7 +13,7 @@ private:
 	std::map<int, JJPoint> m_actionLst;
 };
 
-class SmartController// : public Ref
+class SmartController : public Ref
 {
 	enum SC_Type {
 		SC_DEFENSE = 0,
@@ -30,6 +30,9 @@ public:
 	void order(Guide& g);
 	void setDestination(std::vector<int> dest);
 private:
-	void evalute(TetrisBlock* block, JJPoint pos);
+	int evalute(); // inline
+
+private:
+	GamePanel* m_panel;
 };
 #endif

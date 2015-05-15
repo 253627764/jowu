@@ -12,21 +12,14 @@ Audio* Audio::instance()
 	return s_instance;
 }
 
-bool Audio::playEffect(char* path)
+bool Audio::playEffect(const std::string& path)
 {
-	if (!checkPath(path)) return false;
-	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(path);
+	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(path.c_str());
 	return true;
 }
 
-bool Audio::playMusic(char *path)
+bool Audio::playMusic(const std::string& path)
 {
-	if (!checkPath(path)) return false;
-	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(path);
-	return true;
-}
-
-bool Audio::checkPath(const std::string& path)
-{
+	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(path.c_str());
 	return true;
 }

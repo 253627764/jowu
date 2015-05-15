@@ -20,7 +20,7 @@ void SmartController::setDestination(std::vector<int> dest)
 
 }
 
-void SmartController::evalute(TetrisBlock* block, JJPoint pos)
+int SmartController::evalute()
 {
-
+	list<int> data = m_owner;
 }

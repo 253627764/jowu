@@ -14,6 +14,7 @@ bool TetrisLayer::init()
 	m_panel->gameOverCallback = CC_CALLBACK_0(TetrisLayer::gameOver, this);
 	Vec2 v = Director::getInstance()->getVisibleOrigin();
 	m_panel->setPosition(110, 110);
+	//m_panel->setVisible(false);
 	addChild(m_panel);
 	schedule(schedule_selector(TetrisLayer::tick), 3);
 
